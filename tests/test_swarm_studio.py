@@ -275,13 +275,13 @@ def test_the_recorded_result_page_labels_its_play_control_as_playback(studio):
     assert 'Pick a recorded run.' in page
 
 
-def test_the_landing_keeps_the_original_palette_and_animates_agents_safely(studio):
+def test_the_landing_uses_the_accepted_white_blue_ink_palette_and_animates_agents_safely(studio):
     css = studio.get('/landing.css')[1].decode().lower()
     script = studio.get('/landing.js')[1].decode().lower()
-    assert all(token in css for token in ('--paper:#fff6ec', '--ink:#1e1a17', '--coral:#ff7f5c'))
+    assert all(token in css for token in ('--paper:#fff', '--ink:#142033', '--coral:#2459d3'))
     assert 'border-radius:6px' in css and '@keyframes pulse' in css
     assert '@keyframes path-flow' in css and '@media(prefers-reduced-motion:reduce)' in css
-    assert "const colours = ['#ff7f5c', '#1e1a17', '#9c351b']" in script
+    assert "const colours = ['#2459d3', '#142033', '#6687bd']" in script
     assert "class: 'moving-agent'" in script and "'aria-hidden': 'true'" in script
     assert 'y: y + 23' in script
     assert 'y: y - 14' not in script

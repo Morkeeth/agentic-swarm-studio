@@ -89,11 +89,11 @@ Retained external-app screens are credited below. Licence entries are the record
 
 | App | Original project | Recorded licence | Replays |
 |---|---|---|---|
-| AirIQ | [ashutosh7i/Air-IQ](https://github.com/ashutosh7i/Air-IQ) | None published | `airiq-about-404`, `airiq-about-fixed` |
-| Blaze | [intrepidbird/blaze](https://github.com/intrepidbird/blaze) | MIT | `blaze-server-routes` |
-| EduNova AI | [JananiSenthilraj01/EduNova-AI](https://github.com/JananiSenthilraj01/EduNova-AI) | None published | `edunova-study-404`, `edunova-study-fixed` |
-| Liar's Dice | [lastingParadox/liars-dice](https://github.com/lastingParadox/liars-dice) | 0BSD | `liarsdice-click-unseen` |
-| PuppyTime | [megler/PuppyTime](https://github.com/megler/PuppyTime) | MIT | `puppytime-lost` |
-| StreetEats | [janellewong/StreetEats](https://github.com/janellewong/StreetEats) | MIT | `streeteats-sign-in` |
-| Water Buddy | [huangc01cph-ops/water-buddy](https://github.com/huangc01cph-ops/water-buddy) | None published | `waterbuddy-v3-404`, `waterbuddy-v3-fixed` |
-| Overturn | [Morkeeth/overturn](https://github.com/Morkeeth/overturn) | Author-owned project; see its own notices | `overturn-nemotron-404`, `overturn-nemotron-fixed` |
+| AirIQ | https://github.com/ashutosh7i/Air-IQ | none published | `airiq-about-404`, `airiq-about-fixed` |
+| Blaze | https://github.com/intrepidbird/blaze | MIT | `blaze-server-routes` |
+| EduNova AI | https://github.com/JananiSenthilraj01/EduNova-AI | none published | `edunova-study-404`, `edunova-study-fixed` |
+| Liar's Dice | https://github.com/lastingParadox/liars-dice | 0BSD | `liarsdice-click-unseen` |
+| PuppyTime | https://github.com/megler/PuppyTime | MIT | `puppytime-lost` |
+| StreetEats | https://github.com/janellewong/StreetEats | MIT | `streeteats-sign-in` |
+| Water Buddy | https://github.com/huangc01cph-ops/water-buddy | none published | `waterbuddy-v3-404`, `waterbuddy-v3-fixed` |
+| Overturn | https://github.com/Morkeeth/overturn | Author-owned project; see its own notices | `overturn-nemotron-404`, `overturn-nemotron-fixed` |
