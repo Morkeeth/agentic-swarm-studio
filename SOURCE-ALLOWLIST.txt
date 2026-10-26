@@ -9,6 +9,7 @@ calib/__init__.py
 calib/score.py
 calib/vectors.json
 docs/app-check.md
+docs/evidence.md
 docs/first-users.md
 docs/payment-scale.md
 docs/repair-loop.md

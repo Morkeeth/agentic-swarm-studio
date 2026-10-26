@@ -21,13 +21,17 @@ The output folder holds:
 - `test_returned_path.py`: the returned check. Point it anywhere with `SWARM_START_URL`.
 - `app-before/`, `app-after/`: the two trees. `python -m sim.repair_loop recheck ../repair-overturn` re-serves both and reruns the check with no model call.
 
+## Recheck the bundled case without a key
+
+Install the dependencies and Chromium using [the root setup guide](../README.md#run-the-product-locally-without-a-key), then run `.venv-app/bin/python -m sim.repair_loop recheck examples/overturn` from the repository root. This fetches the pinned public source and reruns only the returned navigation check. It does not call a model or recreate the two recorded visits. Expect the original check to fail (`before: 1`) and the fixed check to pass (`after: 0`). The command writes new `recheck-*.log` files and leaves the original recorded checks intact.
+
 ## What counts as repaired
 
 All three must hold: the check was red on the original **because a page on the path answered with an error**, the check is green with the fix, and the second visitor completed the goal. A check that is red because it cannot find the recorded control does not reproduce the failure, so the loop stops there instead of crediting a fix. A fix that changes nothing stays red and is reported as not repaired.
 
 ## The Overturn case
 
-Overturn is a public app by the same author. Its menu links are clean URLs (`/about`) that only work because `vercel.json` rewrites them. On any other static host (a local preview, GitHub Pages, a plain file server) every menu link answers 404. The fix points the links at the real files (`/about.html`), which also still works on Vercel. The deployed original passes the same check, which shows the failure depends on the host, and the report says so.
+Overturn is a public app by the same author. Its menu links are clean URLs (`/about`) that only work because `vercel.json` rewrites them. On the plain static host used in this case, clean menu paths answer 404 because that host does not apply Vercel rewrite rules. The fix points the links at the real files (`/about.html`), which also still works on Vercel. The deployed original passes the same check, which shows the failure depends on the host, and the report says so.
 
 The bundled run in `examples/overturn/` used NVIDIA Nemotron Nano (`nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B`) on 26 October 2026. Before the fix: 8 calls, the visitor clicked About, got 404, tried "Why this exists", got 404 again and gave up. After the fix: 5 calls, About opened and a second call agreed the screen shows why Overturn exists. Every reply carried usage and the requested model id. 16,317 prompt and 617 completion tokens, 0.00113 USD at listed rates, not a provider invoice.
 

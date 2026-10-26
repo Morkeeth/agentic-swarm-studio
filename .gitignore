@@ -21,3 +21,6 @@ runs/checks.jsonl
 __pycache__/
 .venv*/
 *.pyc
+
+# Local reproduction output; retain the original evidence logs.
+examples/overturn/recheck-*.log

@@ -1,6 +1,10 @@
-# Local headless batch
+# Setup and commands
 
-Run in this repository with a real Chromium-capable machine, outside the Codex sandbox. No execution was made by this lane. Model calls cost money; the runner requires explicit execution and a chosen stop.
+Start with the no-key replay and repair recheck commands in [README.md](README.md). They are the judge path. The optional commands below make new runs only when explicitly enabled.
+
+## Optional local headless batch
+
+Run in this repository on a machine with Python, Playwright and Chromium. Model calls cost money; the runner requires explicit execution and a chosen stop.
 
 ```sh
 python3 -m pip install -r requirements-app-check.txt pytest
@@ -29,7 +33,7 @@ Browser check before a paid run:
 python3 -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); b=p.chromium.launch(headless=True); page=b.new_page(); page.goto("data:text/html,ready"); assert page.inner_text("body")=="ready"; b.close(); p.stop()'
 ```
 
-If interrupted, the runner marks in-flight queue rows interrupted. Pending rows remain queued and are not counted as attempts. Re-run creates a separate batch, preserving history. Visual checks still required on phone and desktop; this lane was instructed to do code only.
+If interrupted, the runner marks in-flight queue rows interrupted. Pending rows remain queued and are not counted as attempts. Re-run creates a separate batch, preserving history. Inspect the saved browser screens on phone and desktop before treating a result as a product finding.
 
 ### Optional local Codex subscription visitor
 
