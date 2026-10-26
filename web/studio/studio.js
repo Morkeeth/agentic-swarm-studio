@@ -82,7 +82,7 @@
       g.appendChild(el('rect', {class: 'frame', x: 0, y: 0, width: RW, height: height - PAD * 2 - 10}));
       const shot = room.shot || room.phoneShot;
       if (shot) g.appendChild(el('image', {href: `${base()}/${shot}`, x: 3, y: 3, width: RW - 6, height: TH - 6, preserveAspectRatio: 'xMidYMin slice'}));
-      g.appendChild(el('line', {x1: 0, x2: RW, y1: TH, y2: TH, stroke: '#1E1A17', 'stroke-width': 3}));
+      g.appendChild(el('line', {x1: 0, x2: RW, y1: TH, y2: TH, stroke: '#142033', 'stroke-width': 3}));
       g.appendChild(el('text', {x: 12, y: TH + 22, class: 't'}, (room.title || 'Untitled').slice(0, 30)));
       g.appendChild(el('text', {x: 12, y: TH + 38, class: 'p'}, room.key.slice(0, 40)));
       if (room.code) g.appendChild(el('text', {x: RW - 12, y: TH + 22, class: 'code', 'text-anchor': 'end'}, String(room.code)));
@@ -97,14 +97,14 @@
       roomsG.appendChild(g);
     }
     people.forEach((v, vi) => {
-      const y = rowsTop + vi * ROW, colour = v.colour || '#1E1A17';
+      const y = rowsTop + vi * ROW, colour = ['#2459D3', '#142033', '#6687BD', '#8392AA', '#3D64A0'][vi % 5];
       const per = new Map();
       let prev = null, d = '';
       v._seen.forEach((s, si) => {
         const room = rooms.get(pathOf(s.url)), k = per.get(room.key) || 0; per.set(room.key, k + 1);
         const sx = room.x + 12 + k * 15;
         const cls = s.status === 'ok' ? 'fill' : s.status;
-        const fill = cls === 'fill' ? colour : cls === 'error_page' ? '#FF7F5C' : cls === 'stuck' ? '#1E1A17' : cls === 'got_there' ? '#1F6B4E' : 'none';
+        const fill = cls === 'fill' ? colour : cls === 'error_page' ? '#2459D3' : cls === 'stuck' ? '#142033' : cls === 'got_there' ? '#2459D3' : 'none';
         marks.appendChild(el('rect', {x: sx, y: y - 6, width: 11, height: 11, fill, stroke: fill === 'none' ? colour : fill, 'stroke-width': 2,
                                       'stroke-dasharray': s.status === 'thinking' ? '2 2' : 'none'}));
         if (prev && prev.room !== room) {
@@ -116,7 +116,7 @@
       });
       if (d) trails.appendChild(el('path', {class: 'trail', d, stroke: colour}));
       if (prev) {
-        const dot = el('circle', {class: 'dot', r: 6, cx: 0, cy: 0, fill: colour, stroke: '#FFFDF9', 'stroke-width': 2});
+        const dot = el('circle', {class: 'dot', r: 6, cx: 0, cy: 0, fill: colour, stroke: '#FFFFFF', 'stroke-width': 2});
         dot.style.transform = `translate(${prev.x + 22}px, ${y - 0.5}px)`;
         marks.appendChild(dot);
         const last = prev.s, done = v.status === 'complete' && v._seen.length === v.steps.length;
@@ -124,7 +124,7 @@
           marks.appendChild(el('circle', {class: 'knot', r: 11, cx: prev.x + 22, cy: y - .5, stroke: colour}));
           marks.appendChild(el('path', {d: `M${prev.x + 31},${y - 9} l6,-6 M${prev.x + 31},${y + 8} l6,6`, stroke: colour, 'stroke-width': 2}));
         }
-        if (last.status === 'error_page' && last.hit) marks.appendChild(el('circle', {r: 4, cx: prev.x + 5, cy: y - .5, fill: '#FF7F5C'}));
+        if (last.status === 'error_page' && last.hit) marks.appendChild(el('circle', {r: 4, cx: prev.x + 5, cy: y - .5, fill: '#2459D3'}));
       }
     });
     svg.append(trails, roomsG, marks);
@@ -134,8 +134,8 @@
   function roster() {
     const r = state.result, list = $('#roster'); list.replaceChildren();
     if (!r) return;
-    for (const v of model(r, state.T).people) {
-      const li = h('li'); li.style.setProperty('--c', v.colour || '#1E1A17');
+    for (const [vi, v] of model(r, state.T).people.entries()) {
+      const li = h('li'); li.style.setProperty('--c', ['#2459D3', '#142033', '#6687BD', '#8392AA', '#3D64A0'][vi % 5]);
       li.title = v.goal || ''; li.appendChild(h('b', '', v.name));
       const steps = h('div', 'steps'); for (const s of v._seen) { const i = h('i', s.status); i.title = `${s.order}. ${s.action || 'looking'} ${s.target_text ? "'" + s.target_text + "'" : ''} : ${s.status}`; steps.appendChild(i); }
       li.appendChild(steps);

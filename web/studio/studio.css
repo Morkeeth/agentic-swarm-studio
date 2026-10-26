@@ -1,7 +1,7 @@
-/* Agentic Swarm Simulator studio. Tokens from the submission images (nvidia-images/src): paper, ink, coral, green. */
+/* Agentic Swarm Simulator studio. White, blue and ink correction; recorded evidence is unchanged. */
 :root{
-  --paper:#FFF6EC; --ink:#1E1A17; --coral:#FF7F5C; --green:#1F6B4E; --line:#D9CFC4; --mute:#5E554E; --card:#FFFDF9;
-  --sans:'Avenir Next','Avenir','Nunito Sans','Segoe UI',sans-serif;
+  --paper:#F7F9FC; --ink:#142033; --coral:#2459D3; --green:#2459D3; --line:#DCE3EE; --mute:#526176; --card:#FFFFFF;
+  --sans:'Inter','Helvetica Neue',Arial,sans-serif;
   --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box}
@@ -157,3 +157,22 @@ input,select{display:block;width:100%;margin-top:4px;padding:9px 10px;border:2px
 @media(max-width:520px){.rehearsal-start{padding:13px}.intro h1{font-size:34px;line-height:1.02}.intro p{font-size:15px}.top .brand span:last-child{font-size:15px}.top{gap:8px}.tabs{width:100%;overflow-x:auto;flex-wrap:nowrap}.tabs button{padding:7px 9px;white-space:nowrap}.live-progress{margin-bottom:18px}.grid{gap:16px}.grid>.stage{order:0}.grid>.side{order:1;margin-top:18px}.stage-head{margin-top:0}.research-result{margin-top:26px}.research-head{display:block}.research-head button{margin-top:12px}.plan-wrap{margin-right:6px}.panels{margin-top:20px}}
 
 .evidence-shot{max-height:260px;object-fit:cover;object-position:top}
+
+/* Product correction: restrained evidence workspace. */
+:root{--paper:#fff;--card:#fff;--line:#dce3ee;--ink:#142033;--mute:#526176;--coral:#2459d3;--green:#2459d3}
+body{background:#fff;font-size:16px;line-height:1.5}.top{border-bottom:1px solid var(--line);padding:20px 40px}
+.brand{font-weight:650;letter-spacing:-.03em}.mark{border-radius:50%;background:var(--coral)}
+.tabs button{font-weight:500;font-size:14px;border-bottom-width:2px}.view{padding:36px 40px 64px;max-width:1520px}
+.intro h1{font-weight:550;letter-spacing:-.045em;font-size:42px;line-height:1.12}.intro p{font-size:16px;max-width:980px}.eyebrow,.intro .eyebrow{font:600 11px/1.4 var(--sans);letter-spacing:.09em}
+h2{font-size:13px;text-transform:none;letter-spacing:0;font-weight:650}
+.rehearsal-start{border:1px solid var(--line);border-radius:6px;background:#f7f9fc;padding:18px}.prompt-line .go{border:1px solid var(--coral);background:var(--coral);color:white;border-radius:5px;font-weight:600}
+input,select{border:1px solid var(--line);border-radius:4px}.demo-pick button,.clock button,#explain button,.research-head button{border:1px solid var(--line);border-radius:4px;font-weight:550}
+.live-progress{border-radius:6px;background:#f7f9fc;margin-bottom:28px}.live-progress .visitor-dot{border-width:1px}.live-progress b{font-weight:600}
+.grid{grid-template-columns:260px minmax(0,1fr);gap:32px}.card,.case{border:1px solid var(--line);border-radius:6px;padding:18px}.side .card{border:0;border-right:1px solid var(--line);border-radius:0;padding:0 22px 0 0}
+.runs button{padding:12px 0}.runs button[aria-current=true]{color:var(--coral);font-weight:650}.runs small{line-height:1.6;margin-top:3px}
+.headline{font-size:28px;font-weight:550;letter-spacing:-.035em}.diagnosis{background:#f3f6fc;border:0;border-left:2px solid var(--coral);border-radius:0}
+.plan-wrap{border:1px solid var(--line);box-shadow:none!important;border-radius:6px;background:#f7f9fc}#plan .room rect.frame{stroke:#a9b7cb;stroke-width:1}#plan .room.err rect.frame{stroke:#a13b4b}#plan .room .t{font-weight:600}
+.roster li{border-left-width:2px}.roster li:nth-child(3n+1){--c:#2459d3!important}.roster li:nth-child(3n+2){--c:#142033!important}.roster li:nth-child(3n+3){--c:#6687bd!important}
+.roster .out{letter-spacing:0;text-transform:none;font-weight:600}.roster q{font-size:14px}.code{border-radius:4px;background:#f3f6fc;color:var(--ink);font-size:12px}.judge th{border-bottom:1px solid var(--line)}
+.research-result{border-top:1px solid var(--line)}.comparison-cards{border-width:1px}.case.best{box-shadow:none;border-color:var(--coral)}.case h3{font-weight:600}.case pre{border:1px solid var(--line)}
+@media(max-width:900px){.view{padding:24px 16px 48px}.grid{grid-template-columns:1fr}.side .card{border:1px solid var(--line);padding:18px;border-radius:6px}.top{padding:16px}.intro h1{font-size:34px}}

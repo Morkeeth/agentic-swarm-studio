@@ -56,11 +56,11 @@
     const group = document.querySelector('#track-lanes');
     visitors.forEach((visitor, i) => {
       const y = 65 + i * 60;
-      group.append(svg('path', {d: `M65 ${y} H540`, stroke: '#cdd8c2', 'stroke-width': 2, fill: 'none'}));
+      group.append(svg('path', {d: `M65 ${y} H540`, stroke: '#dce3ee', 'stroke-width': 2, fill: 'none'}));
       const token = svg('g', {transform: 'translate(65,0)'});
       token.append(svg('circle', {cx: 0, cy: y, r: 14, fill: visitor.colour}), svg('text', {x: 0, y: y + 4, 'text-anchor':'middle', fill:'#fff', 'font-size':11}, visitor.phone ? 'P' : visitor.id.slice(0,1).toUpperCase()));
-      const status = svg('text', {x:65, y:y+25, 'font-size':11, fill:'#53604d'});
-      const stall = svg('text', {x: 362, y: y + 5, fill: '#a43e29', 'font-size': 20, visibility: 'hidden', 'aria-label': 'Visitor stalled'}, '×');
+      const status = svg('text', {x:65, y:y+25, 'font-size':11, fill:'#526176'});
+      const stall = svg('text', {x: 362, y: y + 5, fill: '#a13b4b', 'font-size': 20, visibility: 'hidden', 'aria-label': 'Visitor stalled'}, '×');
       group.append(token, status, stall); lanes.push({visitor, token, status, stall});
     });
     document.querySelector('#mission-caption').textContent = `Source: puppytime-lost / ${r.id}. ${visitors.length} recorded visitors. P = phone. Positions follow recorded step timing; Task and Keep transitions are schematic. Separate from the fresh-five batch below. No model call.`;

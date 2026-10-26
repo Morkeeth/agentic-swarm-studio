@@ -9,7 +9,7 @@
   const source = document.querySelector('#swarm-source');
   const open = document.querySelector('#swarm-open');
   const replay = document.querySelector('#swarm-replay');
-  const colours = ['#ff7f5c', '#1e1a17', '#9c351b'];
+  const colours = ['#2459d3', '#142033', '#6687bd'];
   let selected = 'puppytime-lost';
   let retained = null;
 
