@@ -1,0 +1,223 @@
+{
+  "finished_at": "2026-10-23T15:30:20.364240+00:00",
+  "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+  "provider": "Nebius Token Factory",
+  "schema": "outside-rehearsal/1",
+  "scope": "Fresh agent attempts on installed releases of three public tools. A failure is not called a tool defect when the canonical control passes.",
+  "status": "complete",
+  "tools": [
+    {
+      "attempted": 3,
+      "attempts": [
+        {
+          "args": [
+            "diff",
+            "--name-only",
+            "fixture-base",
+            "fixture-head"
+          ],
+          "classification": "completed",
+          "finish_reason": "stop",
+          "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "output": "db/migrations/002_add_owner.sql\nsrc/app.py\n",
+          "passed": true,
+          "reply": "{\n  \"args\": [\n    \"diff\",\n    \"--name-only\",\n    \"fixture-base\",\n    \"fixture-head\"\n  ]\n}",
+          "returncode": 0,
+          "seed": 7,
+          "usage": {
+            "completion_tokens": 31,
+            "completion_tokens_details": null,
+            "prompt_tokens": 107,
+            "prompt_tokens_details": null,
+            "total_tokens": 138
+          }
+        },
+        {
+          "args": [
+            "diff",
+            "--name-only",
+            "fixture-base",
+            "fixture-head"
+          ],
+          "classification": "completed",
+          "finish_reason": "stop",
+          "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "output": "db/migrations/002_add_owner.sql\nsrc/app.py\n",
+          "passed": true,
+          "reply": "{\n  \"args\": [\n    \"diff\",\n    \"--name-only\",\n    \"fixture-base\",\n    \"fixture-head\"\n  ]\n}",
+          "returncode": 0,
+          "seed": 13,
+          "usage": {
+            "completion_tokens": 31,
+            "completion_tokens_details": null,
+            "prompt_tokens": 107,
+            "prompt_tokens_details": null,
+            "total_tokens": 138
+          }
+        },
+        {
+          "classification": "agent_format_failure",
+          "error": "The proposed invocation exceeds this task's read-only argument allowlist.",
+          "finish_reason": "stop",
+          "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "passed": false,
+          "reply": "{\n  \"args\": [\n    \"log\",\n    \"--name-only\",\n    \"fixture-base..fixture-head\"\n  ]\n}",
+          "seed": 29,
+          "usage": {
+            "completion_tokens": 29,
+            "completion_tokens_details": null,
+            "prompt_tokens": 107,
+            "prompt_tokens_details": null,
+            "total_tokens": 136
+          }
+        }
+      ],
+      "control": {
+        "output": "db/migrations/002_add_owner.sql\nsrc/app.py\n",
+        "passed": true,
+        "returncode": 0
+      },
+      "finding": "1 visitor response failure(s); the tool's canonical control passed.",
+      "headline": "2 of 3 visitors completed the checked task.",
+      "id": "git",
+      "name": "Git",
+      "passed": 2,
+      "source": "https://github.com/git/git",
+      "task": "List only the file paths changed from tag fixture-base to tag fixture-head, one path per line.",
+      "version": "git version 2.50.1 (Apple Git-155)"
+    },
+    {
+      "attempted": 3,
+      "attempts": [
+        {
+          "classification": "agent_format_failure",
+          "error": "The proposed invocation exceeds this task's read-only argument allowlist.",
+          "finish_reason": "stop",
+          "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "passed": false,
+          "reply": "{\n  \"args\": [\n    \"-n\",\n    \"--fixed-strings\",\n    \"--ignore\",\n    \"ERROR_TOKEN\"\n  ]\n}",
+          "seed": 7,
+          "usage": {
+            "completion_tokens": 29,
+            "completion_tokens_details": null,
+            "prompt_tokens": 108,
+            "prompt_tokens_details": null,
+            "total_tokens": 137
+          }
+        },
+        {
+          "classification": "agent_format_failure",
+          "error": "The proposed invocation exceeds this task's read-only argument allowlist.",
+          "finish_reason": "stop",
+          "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "passed": false,
+          "reply": "{\n  \"args\": [\n    \"-n\",\n    \"--fixed-strings\",\n    \"--ignore\",\n    \"ERROR_TOKEN\"\n  ]\n}",
+          "seed": 13,
+          "usage": {
+            "completion_tokens": 29,
+            "completion_tokens_details": null,
+            "prompt_tokens": 108,
+            "prompt_tokens_details": null,
+            "total_tokens": 137
+          }
+        },
+        {
+          "classification": "agent_format_failure",
+          "error": "The proposed invocation exceeds this task's read-only argument allowlist.",
+          "finish_reason": "stop",
+          "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "passed": false,
+          "reply": "{\n  \"args\": [\n    \"-n\",\n    \"-F\",\n    \"-e\",\n    \"ERROR_TOKEN\",\n    \".\"\n  ]\n}",
+          "seed": 29,
+          "usage": {
+            "completion_tokens": 30,
+            "completion_tokens_details": null,
+            "prompt_tokens": 108,
+            "prompt_tokens_details": null,
+            "total_tokens": 138
+          }
+        }
+      ],
+      "control": {
+        "output": "./src/app.log:2:ERROR_TOKEN\n",
+        "passed": true,
+        "returncode": 0
+      },
+      "finding": "3 visitor response failure(s); the tool's canonical control passed.",
+      "headline": "0 of 3 visitors completed the checked task.",
+      "id": "ripgrep",
+      "name": "ripgrep",
+      "passed": 0,
+      "source": "https://github.com/BurntSushi/ripgrep",
+      "task": "Find the exact fixed string ERROR_TOKEN in this directory, include line numbers, and respect .ignore.",
+      "version": "ripgrep 15.2.0 (rev e89fff89ac)"
+    },
+    {
+      "attempted": 3,
+      "attempts": [
+        {
+          "classification": "agent_format_failure",
+          "error": "The proposed invocation exceeds this task's read-only argument allowlist.",
+          "finish_reason": "stop",
+          "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "passed": false,
+          "reply": "{\n  \"args\": [\n    \"-r\",\n    \".[] | sort_by(.name) | .[] | \\\"\\\\(.name)\\\\t\\\\(.value)\\\"\",\n    \"records.json\"\n  ]\n}",
+          "seed": 7,
+          "usage": {
+            "completion_tokens": 46,
+            "completion_tokens_details": null,
+            "prompt_tokens": 109,
+            "prompt_tokens_details": null,
+            "total_tokens": 155
+          }
+        },
+        {
+          "classification": "agent_format_failure",
+          "error": "The proposed invocation exceeds this task's read-only argument allowlist.",
+          "finish_reason": "stop",
+          "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "passed": false,
+          "reply": "{\n  \"args\": [\n    \"-r\",\n    \".[] | sort_by(.name) | .[] | \\\"\\\\(.name)\\\\t\\\\(.value)\\\"\",\n    \"records.json\"\n  ]\n}",
+          "seed": 13,
+          "usage": {
+            "completion_tokens": 46,
+            "completion_tokens_details": null,
+            "prompt_tokens": 109,
+            "prompt_tokens_details": null,
+            "total_tokens": 155
+          }
+        },
+        {
+          "classification": "agent_format_failure",
+          "error": "The proposed invocation exceeds this task's read-only argument allowlist.",
+          "finish_reason": "stop",
+          "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+          "passed": false,
+          "reply": "{\n  \"args\": [\n    \"-r\",\n    \".[] | \\\"\\\\(.name)\\\\t\\\\(.value)\\\"\",\n    \"records.json\"\n  ]\n}",
+          "seed": 29,
+          "usage": {
+            "completion_tokens": 37,
+            "completion_tokens_details": null,
+            "prompt_tokens": 109,
+            "prompt_tokens_details": null,
+            "total_tokens": 146
+          }
+        }
+      ],
+      "control": {
+        "output": "alpha\t1\nbeta\t2\n",
+        "passed": true,
+        "returncode": 0
+      },
+      "finding": "3 visitor response failure(s); the tool's canonical control passed.",
+      "headline": "0 of 3 visitors completed the checked task.",
+      "id": "jq",
+      "name": "jq",
+      "passed": 0,
+      "source": "https://github.com/jqlang/jq",
+      "task": "Read records.json, sort the records by name, and return each name and value as tab-separated text.",
+      "version": "jq-1.7.1-apple"
+    }
+  ],
+  "visitors_per_tool": 3
+}

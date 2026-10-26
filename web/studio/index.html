@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic Swarm Simulator</title>
+<link rel="stylesheet" href="/studio/studio.css">
+<script src="/studio/studio.js" defer></script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/studio" aria-label="Agentic Swarm Simulator">
+    <span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span>Agentic Swarm Simulator</span>
+  </a>
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="swarm" aria-selected="true">Swarm</button>
+    <button role="tab" data-tab="cases" aria-selected="false">Before and after</button>
+    <button role="tab" data-tab="library" aria-selected="false">Evidence library</button>
+  </nav>
+</header>
+
+<section id="swarm" class="view">
+  <div class="intro">
+    <p class="eyebrow">Release rehearsal</p>
+    <h1>Try your product before your users do.</h1>
+    <p>Paste a staging URL and tell three NVIDIA Nemotron visitors what a first-time user should accomplish. Watch each phone-sized visit, then keep the screen and path that explain where the release got stuck.</p>
+  </div>
+
+  <form id="run" class="rehearsal-start" aria-label="Start a release rehearsal">
+    <div class="prompt-line">
+      <label><span>Staging URL</span><input name="url" required placeholder="https://staging.your-app.com" autocomplete="off" inputmode="url"></label>
+      <label class="goal"><span>One goal</span><input name="task" value="Find the pricing page and explain the starter plan" maxlength="160"></label>
+      <input type="hidden" name="visitors" value="3">
+      <button type="submit" class="go">Send in 3 visitors</button>
+    </div>
+    <div class="start-meta"><p id="run-note" class="note"></p><div class="demo-pick">Or rehearse the bundled app: <button type="button" data-demo="/demo/notes">working guide</button><button type="button" data-demo="/demo/notes-broken">broken guide</button></div></div>
+  </form>
+
+  <ol id="live-progress" class="live-progress" aria-label="Visitor progress">
+    <li data-visitor="0"><span class="visitor-dot"></span><b>New visitor</b><small>Waiting for a release</small></li>
+    <li data-visitor="1"><span class="visitor-dot"></span><b>Careful buyer</b><small>Waiting for a release</small></li>
+    <li data-visitor="2"><span class="visitor-dot"></span><b>Phone visitor</b><small>Waiting for a release</small></li>
+  </ol>
+
+  <div class="grid">
+    <aside class="side">
+      <div class="card"><h2>Recorded swarms</h2><p class="note">Real saved browser runs. Playback makes no model calls. Where it is on, the Ask Nemotron button makes one live call.</p><ul id="runs" class="runs"></ul></div>
+    </aside>
+
+    <main class="stage">
+      <div class="stage-head">
+        <div>
+          <p id="run-url" class="url"></p>
+          <p id="headline" class="headline">Pick a recorded run.</p>
+        </div>
+        <div class="clock">
+          <button id="play" type="button" aria-label="Play recorded path">Play recorded path</button>
+          <input id="scrub" type="range" min="0" max="1000" value="1000" aria-label="Time">
+          <span id="time" class="mono">0.0 s</span>
+        </div>
+      </div>
+      <div class="diagnosis card"><h2>What happened?</h2><p id="diagnosis"></p>
+        <div id="explain" hidden><button id="explain-go" type="button">Ask Nemotron now</button><p id="explain-note" class="note"></p><p id="explain-text"></p></div></div>
+      <p class="replay-key">Recorded playback · each colour is one agent · squares are steps · lines are paths · rings mark a stuck ending</p>
+      <div class="plan-wrap"><svg id="plan" role="img" aria-label="Floor plan of the screens each visitor moved through"></svg></div>
+      <ol id="roster" class="roster"></ol>
+
+      <div class="panels">
+        <section class="card">
+          <h2>Judge</h2>
+          <p class="note" id="judge-note"></p>
+          <table class="judge"><thead><tr><th>Visitor</th><th>Said done</th><th>Screen agreed</th><th>Job done</th></tr></thead><tbody id="judge"></tbody></table>
+          <p class="note" id="spend"></p>
+        </section>
+        <section class="card">
+          <h2>Recorded path check</h2>
+          <p class="note" id="test-note"></p>
+          <pre id="test" class="code"></pre>
+          <a id="test-link" class="dl" download="test_swarm_path.py" hidden>Download the test</a>
+        </section>
+      </div>
+      <p id="limits" class="limits"></p>
+
+      <section class="research-result" aria-labelledby="research-title">
+        <div class="research-head"><div><p class="eyebrow">Evidence library</p><h2 id="research-title">Does this look like earlier rehearsals?</h2></div><button type="button" id="open-library">Open all research</button></div>
+        <p class="research-intro">The comparison set contains 122 real hackathon apps. It separates an app defect from a model getting lost and from a limit in this simulator, so a stuck visitor is not automatically blamed on the product.</p>
+        <div class="comparison-cards">
+          <button type="button" data-replay="airiq-about-404"><span>App defect</span><b>AirIQ's About Us link opened a 404</b><small>3 visitors followed the same path. The downloaded check went red before the local fix.</small></button>
+          <button type="button" data-replay="puppytime-lost"><span>Model limit</span><b>A visitor got lost on working links</b><small>The app kept responding. The visitor chose other routes and ran out of steps.</small></button>
+          <button type="button" data-replay="liarsdice-click-unseen"><span>Simulator limit</span><b>A click could not be seen or completed</b><small>The record keeps this as our limit, not as a defect in the app.</small></button>
+        </div>
+        <p class="research-foot">Observed collection: 122 apps, five failure types, three reproduced fixes. Visitors are models, not people.</p>
+      </section>
+    </main>
+  </div>
+</section>
+
+<section id="cases" class="view" hidden>
+  <div class="intro">
+    <h1>Ten fixes, scored before and after.</h1>
+    <p>These are command-line agents on controlled historical CPython fixes, separate from the browser swarms. Ten matched cached runs on each side use the same frozen checker. Solid dots passed. Hollow dots failed. The guide case below had no improvement.</p>
+  </div>
+  <p id="case-limits" class="limits"></p>
+  <div id="case-grid" class="case-grid"></div>
+</section>
+<section id="library" class="view" hidden>
+<div class="intro"><h1>The work behind the swarm.</h1><p>Browser swarms, command-line cases, a first-visit study, and earlier product checks. Each answers a different question.</p></div>
+<div class="library-grid">
+<article class="card"><h2>200 first visits</h2><p>64 met the clean GET gate. 43 were untested or skipped by policy. 93 were not green; that is not a count of broken apps.</p><p>One saved read-only visit per app on 16 October. No sign-up, form or payment task. Human labels: 0 of 30. Timings are local one-shot observations.</p><p><a href="/studio/evidence/hn-first-visits.txt">Read the full method and top 20</a> · <a href="/studio/evidence/hn-patterns.txt">Ten descriptive patterns</a></p><ol id="hn-list"></ol></article>
+<article class="card"><h2>Earlier First Users check</h2><img class="evidence-shot" src="/studio/evidence/route-a.png" alt="Saved guide screen from the First Users report after a service restart"><p>Recorded on 17 October. A basic browser check plus one Nemotron Nano explanation through Nebius Token Factory. The saved report survived a service restart.</p><p>This explains checks that already ran. It does not show a new agent completing the task. Model completion status and raw stop reason are preserved in the local integration.</p></article>
+<article class="card"><h2>The harness repair</h2><p>All five agents reached the working guide, quoted its navigation label, then got lost. The harness silently dropped short quotes. It now gives explicit rejection feedback and separates page content from controls.</p><p>The repaired rerun still completed 0 of 5. The phone run broke off after a provider error. Super VL rejected a guide reading claim; the evaluation limitation remains open. No target-app bug was proved.</p><a href="/studio/evidence/harness-audit.txt">Read the trajectory audit</a></article>
+<article class="card"><h2>Earlier evidence film</h2><video controls preload="metadata" src="/studio/evidence/historical-film.mp4"></video><p>13 October, before this studio and the five-agent runs. Historical local checks and replay, not a fresh swarm or proof of forecast accuracy. The previous loop reports and screenshots remain in the project inventory.</p></article>
+</div></section>
+</body>
+</html>

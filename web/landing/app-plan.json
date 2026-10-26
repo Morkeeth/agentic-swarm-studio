@@ -1,0 +1,142 @@
+{
+  "source": "nvidia-engine-2/2026-10-24/nvidia-engine-2-fresh-five-1844/batch.json",
+  "capacity": 100,
+  "apps": [
+    {
+      "id": "store",
+      "name": "Vercel Commerce demo",
+      "url": "https://demo.vercel.store",
+      "task": "Find a black hoodie and open its product page"
+    },
+    {
+      "id": "saas",
+      "name": "Linear",
+      "url": "https://linear.app",
+      "task": "Find where a new team starts using Linear"
+    },
+    {
+      "id": "booking",
+      "name": "Cal.com",
+      "url": "https://cal.com",
+      "task": "Find where a company can book a Cal.com demo"
+    },
+    {
+      "id": "docs",
+      "name": "Nebius docs",
+      "url": "https://docs.nebius.com",
+      "task": "Find the Token Factory quickstart"
+    },
+    {
+      "id": "vibe",
+      "name": "Agentic Swarm Simulator",
+      "url": "https://agentic-swarm-studio-568004190078.us-central1.run.app/studio",
+      "task": "Open a recorded swarm and find why one visitor got stuck"
+    }
+  ],
+  "measured_batch": {
+    "source": "nvidia-engine-2/2026-10-24/nvidia-engine-2-fresh-five-1844/batch.json",
+    "sha256": "9ebf4da1362d14fe67bc89f30d83bf384e05d473c84a49049fd7e719e64d71c2",
+    "apps": [
+      {
+        "id": "store",
+        "name": "Vercel Commerce demo",
+        "kind": "Store",
+        "url": "https://demo.vercel.store",
+        "task": "Find a black hoodie and open its product page",
+        "finished_at": "2026-10-24T16:42:52.462678+00:00",
+        "baseline": [
+          {
+            "detail": "The page could not be opened: TargetClosedError",
+            "label": "The page loads",
+            "status": "failed"
+          }
+        ],
+        "steps": 0,
+        "confirmed": 0,
+        "reasons": [
+          "The visit broke off: TargetClosedError"
+        ]
+      },
+      {
+        "id": "saas",
+        "name": "Linear",
+        "kind": "SaaS signup",
+        "url": "https://linear.app",
+        "task": "Find where a new team starts using Linear",
+        "finished_at": "2026-10-24T16:42:55.360574+00:00",
+        "baseline": [
+          {
+            "detail": "The page could not be opened: TargetClosedError",
+            "label": "The page loads",
+            "status": "failed"
+          }
+        ],
+        "steps": 0,
+        "confirmed": 0,
+        "reasons": [
+          "The visit broke off: TargetClosedError"
+        ]
+      },
+      {
+        "id": "booking",
+        "name": "Cal.com",
+        "kind": "Booking",
+        "url": "https://cal.com",
+        "task": "Find where a company can book a Cal.com demo",
+        "finished_at": "2026-10-24T16:42:57.167664+00:00",
+        "baseline": [
+          {
+            "detail": "The page could not be opened: TargetClosedError",
+            "label": "The page loads",
+            "status": "failed"
+          }
+        ],
+        "steps": 0,
+        "confirmed": 0,
+        "reasons": [
+          "The visit broke off: TargetClosedError"
+        ]
+      },
+      {
+        "id": "docs",
+        "name": "Nebius docs",
+        "kind": "Documentation",
+        "url": "https://docs.nebius.com",
+        "task": "Find the Token Factory quickstart",
+        "finished_at": "2026-10-24T16:42:59.075125+00:00",
+        "baseline": [
+          {
+            "detail": "The page could not be opened: TargetClosedError",
+            "label": "The page loads",
+            "status": "failed"
+          }
+        ],
+        "steps": 0,
+        "confirmed": 0,
+        "reasons": [
+          "The visit broke off: TargetClosedError"
+        ]
+      },
+      {
+        "id": "vibe",
+        "name": "Agentic Swarm Simulator",
+        "kind": "Vibe-coded app",
+        "url": "https://agentic-swarm-studio-568004190078.us-central1.run.app/studio",
+        "task": "Open a recorded swarm and find why one visitor got stuck",
+        "finished_at": "2026-10-24T16:43:01.194701+00:00",
+        "baseline": [
+          {
+            "detail": "The page could not be opened: TargetClosedError",
+            "label": "The page loads",
+            "status": "failed"
+          }
+        ],
+        "steps": 0,
+        "confirmed": 0,
+        "reasons": [
+          "The visit broke off: TargetClosedError"
+        ]
+      }
+    ]
+  }
+}

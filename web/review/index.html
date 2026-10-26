@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Full review · Agentic Swarm Simulator</title>
+  <link rel="stylesheet" href="/review/review.css">
+</head>
+<body>
+  <header class="bar">
+    <a href="/">Agentic Swarm Simulator</a>
+    <nav><a href="/studio">Replay studio</a><b>Full review</b></nav>
+  </header>
+  <main>
+    <section class="start" aria-labelledby="title">
+      <div>
+        <p class="kicker">Pre-launch review for web apps</p>
+        <h1 id="title">Paste the app. Name the job.</h1>
+        <p>Software visitors try the path in read-only browsers. The report separates what worked, where they left, and what still needs a human check.</p>
+      </div>
+      <form id="run">
+        <label>Public or staging URL<input id="url" name="url" type="url" required placeholder="https://your-app.example"></label>
+        <label>The job a visitor must finish<input id="task" name="task" required maxlength="160" placeholder="Find the pricing plan for a three-person team"></label>
+        <button type="submit">Run full review</button>
+        <small id="setup">Read-only. No typing, sign-in, buying, uploads, saves, or submissions.</small>
+      </form>
+    </section>
+
+    <section id="progress" class="progress" hidden aria-live="polite">
+      <span></span><p id="progress-copy">Starting the review. No visitor has moved yet.</p>
+    </section>
+
+    <section id="report" hidden>
+      <header class="report-head">
+        <div><p class="kicker">Full review</p><h2 id="headline"></h2><p id="scope"></p></div>
+        <a id="replay" href="/studio">Open the evidence replay</a>
+      </header>
+      <div class="journey" id="journey" aria-label="Visitor paths and exit points"></div>
+      <div class="sections">
+        <section><h3>What worked</h3><div id="works"></div></section>
+        <section><h3>What broke</h3><div id="breaks"></div></section>
+        <section><h3>What may be missing</h3><div id="missing"></div></section>
+      </div>
+      <p class="limit">Candidate findings stay candidates until a person checks the named screen. A model getting lost is not an app defect.</p>
+    </section>
+  </main>
+  <script src="/review/review.js"></script>
+</body>
+</html>

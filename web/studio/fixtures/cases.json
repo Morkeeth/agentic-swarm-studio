@@ -1,0 +1,363 @@
+{
+ "cases": [
+  {
+   "id": "CASE-01",
+   "flow": "Reject an abbreviated approval flag",
+   "task": "Reject the abbreviated approval flag in /work/flags.txt and save only REJECT or ACCEPT to /agent/verdict.txt. Only ++approve is allowed. You may use the supplied CLI or another shell method. The controller checks the file.",
+   "scope": "cached real Nano command-line agents on controlled historical CPython tool fixes; not browser or human users",
+   "delta": 0.7,
+   "status": "observed improvement",
+   "fix": "Strict flag handling in the frozen argparse module",
+   "files": [
+    "Lib/argparse.py"
+   ],
+   "judge": "frozen independent artifact checker",
+   "before": {
+    "receipt": "01-argparse-abbrev/before.json",
+    "judge_score": 0.1,
+    "passed": 1,
+    "runs": 10
+   },
+   "after": {
+    "receipt": "01-argparse-abbrev/after.json",
+    "judge_score": 0.8,
+    "passed": 8,
+    "runs": 10
+   },
+   "paired": {
+    "improved": 7,
+    "worsened": 0,
+    "unchanged": 3,
+    "exact_two_sided_sign_p": 0.015625,
+    "interpretation": "descriptive archived comparison; no human or broad reliability claim"
+   },
+   "diff": "CASE-01.diff"
+  },
+  {
+   "id": "CASE-02",
+   "flow": "Read the endpoint from a section containing a closing bracket",
+   "task": "Read the endpoint from the complete Deploy ] France section in /work/deploy.ini and save only the value to /agent/endpoint.txt. You may use the supplied CLI or another shell method. The controller checks the file, not your prose.",
+   "scope": "cached real Nano command-line agents on controlled historical CPython tool fixes; not browser or human users",
+   "delta": 0.5,
+   "status": "observed improvement",
+   "fix": "Section-name parsing in the frozen configparser module",
+   "files": [
+    "Lib/configparser.py"
+   ],
+   "judge": "frozen independent artifact checker",
+   "before": {
+    "receipt": "02-config-bracket/before.json",
+    "judge_score": 0.1,
+    "passed": 1,
+    "runs": 10
+   },
+   "after": {
+    "receipt": "02-config-bracket/after.json",
+    "judge_score": 0.6,
+    "passed": 6,
+    "runs": 10
+   },
+   "paired": {
+    "improved": 6,
+    "worsened": 1,
+    "unchanged": 3,
+    "exact_two_sided_sign_p": 0.125,
+    "interpretation": "descriptive archived comparison; no human or broad reliability claim"
+   },
+   "diff": "CASE-02.diff"
+  },
+  {
+   "id": "CASE-03",
+   "flow": "Keep the endpoint when refreshing a section from itself",
+   "task": "Read /work/refresh.ini, refresh the deploy section by assigning it to itself, and save the endpoint remaining afterward to /agent/endpoint.txt. You may use the supplied CLI or another shell method. The controller checks the file.",
+   "scope": "cached real Nano command-line agents on controlled historical CPython tool fixes; not browser or human users",
+   "delta": 0.1,
+   "status": "observed improvement",
+   "fix": "Self-assignment behavior in the frozen configparser module",
+   "files": [
+    "Lib/configparser.py"
+   ],
+   "judge": "frozen independent artifact checker",
+   "before": {
+    "receipt": "03-config-self/before.json",
+    "judge_score": 0.1,
+    "passed": 1,
+    "runs": 10
+   },
+   "after": {
+    "receipt": "03-config-self/after.json",
+    "judge_score": 0.2,
+    "passed": 2,
+    "runs": 10
+   },
+   "paired": {
+    "improved": 2,
+    "worsened": 1,
+    "unchanged": 7,
+    "exact_two_sided_sign_p": 1,
+    "interpretation": "descriptive archived comparison; no human or broad reliability claim"
+   },
+   "diff": "CASE-03.diff"
+  },
+  {
+   "id": "CASE-04",
+   "flow": "Reject a contact field outside the CSV schema",
+   "task": "Validate /work/contact.json against the allowed fields name and email. Save exactly REJECT or ACCEPT to /agent/decision.txt. The unapproved_tag field is outside the schema. You may use the supplied validator or another shell method. The controller checks the file, not your prose.",
+   "scope": "cached real Nano command-line agents on controlled historical CPython tool fixes; not browser or human users",
+   "delta": 0.8,
+   "status": "observed improvement",
+   "fix": "Case handling for extrasaction in the frozen CSV module",
+   "files": [
+    "Lib/csv.py"
+   ],
+   "judge": "frozen independent artifact checker",
+   "before": {
+    "receipt": "04-csv-extras/before.json",
+    "judge_score": 0.1,
+    "passed": 1,
+    "runs": 10
+   },
+   "after": {
+    "receipt": "04-csv-extras/after.json",
+    "judge_score": 0.9,
+    "passed": 9,
+    "runs": 10
+   },
+   "paired": {
+    "improved": 8,
+    "worsened": 0,
+    "unchanged": 2,
+    "exact_two_sided_sign_p": 0.0078125,
+    "interpretation": "descriptive archived comparison; no human or broad reliability claim"
+   },
+   "diff": "CASE-04.diff"
+  },
+  {
+   "id": "CASE-05",
+   "flow": "Identify the header of the registered readings CSV",
+   "task": "Decide whether the first row of /work/readings.csv is a header, and save HEADER or DATA to /agent/header.txt. You may use the supplied CLI or another shell method. The controller checks the file.",
+   "scope": "cached real Nano command-line agents on controlled historical CPython tool fixes; not browser or human users",
+   "delta": 0.2,
+   "status": "observed improvement",
+   "fix": "Header detection in the frozen CSV module",
+   "files": [
+    "Lib/csv.py"
+   ],
+   "judge": "frozen independent artifact checker",
+   "before": {
+    "receipt": "05-csv-header/before.json",
+    "judge_score": 0.6,
+    "passed": 6,
+    "runs": 10
+   },
+   "after": {
+    "receipt": "05-csv-header/after.json",
+    "judge_score": 0.8,
+    "passed": 8,
+    "runs": 10
+   },
+   "paired": {
+    "improved": 4,
+    "worsened": 2,
+    "unchanged": 4,
+    "exact_two_sided_sign_p": 0.6875,
+    "interpretation": "descriptive archived comparison; no human or broad reliability claim"
+   },
+   "diff": "CASE-05.diff"
+  },
+  {
+   "id": "CASE-06",
+   "flow": "Map a contact with a one-pass column iterator",
+   "task": "Map the single row in /work/contact.csv using the one-pass schema name,email and save the JSON object to /agent/contact.json. You may use the supplied CLI or another shell method. The controller checks the file.",
+   "scope": "cached real Nano command-line agents on controlled historical CPython tool fixes; not browser or human users",
+   "delta": 0.3,
+   "status": "observed improvement",
+   "fix": "Iterator handling in the frozen CSV module",
+   "files": [
+    "Lib/csv.py"
+   ],
+   "judge": "frozen independent artifact checker",
+   "before": {
+    "receipt": "06-csv-iterator/before.json",
+    "judge_score": 0.1,
+    "passed": 1,
+    "runs": 10
+   },
+   "after": {
+    "receipt": "06-csv-iterator/after.json",
+    "judge_score": 0.4,
+    "passed": 4,
+    "runs": 10
+   },
+   "paired": {
+    "improved": 3,
+    "worsened": 0,
+    "unchanged": 7,
+    "exact_two_sided_sign_p": 0.25,
+    "interpretation": "descriptive archived comparison; no human or broad reliability claim"
+   },
+   "diff": "CASE-06.diff"
+  },
+  {
+   "id": "CASE-07",
+   "flow": "Save compact JSON while keeping all values",
+   "task": "Format /work/payload.json as one compact JSON line and save it to /agent/compact.json. Preserve all values. You may use the supplied CLI or another shell method. The controller checks the file.",
+   "scope": "cached real Nano command-line agents on controlled historical CPython tool fixes; not browser or human users",
+   "delta": 0.9,
+   "status": "observed improvement",
+   "fix": "Compact output option in the frozen JSON tool",
+   "files": [
+    "Lib/json/tool.py"
+   ],
+   "judge": "frozen independent artifact checker",
+   "before": {
+    "receipt": "07-json-compact/before.json",
+    "judge_score": 0.1,
+    "passed": 1,
+    "runs": 10
+   },
+   "after": {
+    "receipt": "07-json-compact/after.json",
+    "judge_score": 1.0,
+    "passed": 10,
+    "runs": 10
+   },
+   "paired": {
+    "improved": 9,
+    "worsened": 0,
+    "unchanged": 1,
+    "exact_two_sided_sign_p": 0.00390625,
+    "interpretation": "descriptive archived comparison; no human or broad reliability claim"
+   },
+   "diff": "CASE-07.diff"
+  },
+  {
+   "id": "CASE-08",
+   "flow": "Extract event IDs from a JSON-lines stream in order",
+   "task": "Read the three records in /work/events.jsonl and put their event IDs into /agent/ids.txt, one ID per line in original order. You may use the supplied CLI or another shell method. The controller checks the file, not your prose.",
+   "scope": "cached real Nano command-line agents on controlled historical CPython tool fixes; not browser or human users",
+   "delta": 0.1,
+   "status": "observed improvement",
+   "fix": "JSON-lines handling in the frozen JSON tool",
+   "files": [
+    "Lib/json/tool.py"
+   ],
+   "judge": "frozen independent artifact checker",
+   "before": {
+    "receipt": "08-jsonlines/before.json",
+    "judge_score": 0.3,
+    "passed": 3,
+    "runs": 10
+   },
+   "after": {
+    "receipt": "08-jsonlines/after.json",
+    "judge_score": 0.4,
+    "passed": 4,
+    "runs": 10
+   },
+   "paired": {
+    "improved": 3,
+    "worsened": 2,
+    "unchanged": 5,
+    "exact_two_sided_sign_p": 1,
+    "interpretation": "descriptive archived comparison; no human or broad reliability claim"
+   },
+   "diff": "CASE-08.diff"
+  },
+  {
+   "id": "CASE-09",
+   "flow": "Keep visible Unicode in a release handoff",
+   "task": "Create /agent/answer.json for a release handoff from /work/names.json. Preserve every name and message as visible UTF-8 characters, not JSON Unicode escapes. Keep valid JSON and the same fields. You may use the supplied CLI or another shell method. The controller checks the final file, not your prose.",
+   "scope": "cached real Nano command-line agents on controlled historical CPython tool fixes; not browser or human users",
+   "delta": 0.6,
+   "status": "observed improvement",
+   "fix": "Unicode output option in the frozen JSON tool; use corrected UID-safe run, not earlier duplicate",
+   "files": [
+    "Lib/json/tool.py"
+   ],
+   "judge": "frozen independent artifact checker",
+   "before": {
+    "receipt": "09-no-ascii-uidfix/before.json",
+    "judge_score": 0.4,
+    "passed": 4,
+    "runs": 10
+   },
+   "after": {
+    "receipt": "09-no-ascii-uidfix/after.json",
+    "judge_score": 1.0,
+    "passed": 10,
+    "runs": 10
+   },
+   "paired": {
+    "improved": 6,
+    "worsened": 0,
+    "unchanged": 4,
+    "exact_two_sided_sign_p": 0.03125,
+    "interpretation": "descriptive archived comparison; no human or broad reliability claim"
+   },
+   "diff": "CASE-09.diff"
+  },
+  {
+   "id": "CASE-10",
+   "flow": "Wrap a message without losing its hyphenated text",
+   "task": "Wrap /work/message.txt into display lines at 12 columns and save them, one per line, to /agent/lines.txt. Keep the text and punctuation intact. You may use the supplied CLI or another shell method. The controller checks the file, not your prose.",
+   "scope": "cached real Nano command-line agents on controlled historical CPython tool fixes; not browser or human users",
+   "delta": 0.9,
+   "status": "observed improvement",
+   "fix": "Hyphen handling in the frozen textwrap module",
+   "files": [
+    "Lib/textwrap.py"
+   ],
+   "judge": "frozen independent artifact checker",
+   "before": {
+    "receipt": "10-textwrap-hyphens/before.json",
+    "judge_score": 0.0,
+    "passed": 0,
+    "runs": 10
+   },
+   "after": {
+    "receipt": "10-textwrap-hyphens/after.json",
+    "judge_score": 0.9,
+    "passed": 9,
+    "runs": 10
+   },
+   "paired": {
+    "improved": 9,
+    "worsened": 0,
+    "unchanged": 1,
+    "exact_two_sided_sign_p": 0.00390625,
+    "interpretation": "descriptive archived comparison; no human or broad reliability claim"
+   },
+   "diff": "CASE-10.diff"
+  },
+  {
+   "id": "CASE-11",
+   "flow": "Read the getting started guide",
+   "task": null,
+   "scope": "saved CUA screen; judge-prompt repair only, not a new browser flow",
+   "delta": 0,
+   "status": "no improvement",
+   "fix": "Read-task exception and removal of conflicting existing-content prohibition; failed edits reverted",
+   "files": [],
+   "judge": null,
+   "before": {
+    "judge_score": 0,
+    "receipt": "11-guide-no-improvement/before.json"
+   },
+   "after": {
+    "judge_score": 0,
+    "receipt": "11-guide-no-improvement/after.json"
+   },
+   "paired": null
+  }
+ ],
+ "limitations": [
+  "Historical public fixes with controlled task fixtures, not newly repaired startup apps.",
+  "Cached agent executions were not rerun; archived final outputs were re-scored locally with the same frozen judge.",
+  "Observed batch gains are not proof of human usability or generalization.",
+  "No missing verdict is converted to zero."
+ ],
+ "score_comparability": "Tool scores use deterministic checkers, not Super VL. Guide model score is kept separate. Never pool these scales as judge accuracy.",
+ "source": "nvidia-cases-2320/CASES.json",
+ "sha256": "68ac6b1512f93dbb0c0d64d97ec335876a08370aa32f13ce1a98c56f26e53b64"
+}

@@ -1,0 +1,19 @@
+--- before/Lib/json/tool.py
++++ after/Lib/json/tool.py
+@@ -30,6 +30,8 @@
+                         default=sys.stdout)
+     parser.add_argument('--sort-keys', action='store_true', default=False,
+                         help='sort the output of dictionaries alphabetically by key')
++    parser.add_argument('--no-ensure-ascii', dest='ensure_ascii', action='store_false',
++                        help='disable escaping of non-ASCII characters')
+     parser.add_argument('--json-lines', action='store_true', default=False,
+                         help='parse input using the jsonlines format')
+     group = parser.add_mutually_exclusive_group()
+@@ -49,6 +51,7 @@
+     dump_args = {
+         'sort_keys': options.sort_keys,
+         'indent': options.indent,
++        'ensure_ascii': options.ensure_ascii,
+     }
+     if options.compact:
+         dump_args['indent'] = None

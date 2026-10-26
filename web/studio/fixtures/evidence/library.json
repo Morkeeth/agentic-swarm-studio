@@ -1,0 +1,115 @@
+{
+  "hn": [
+    {
+      "title": "Bigwords.page \u2013 Turn any screen into a sign. The URL is the app",
+      "url": "https://bigwords.page/",
+      "observation": "opened \"BIGWORDS.PAGE: Turn any screen into a sign\" HTTP 200; reading view \"Editor \u00b7 BIGWORDS.PAGE\" at https://bigwords.page/editor HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "boostmyagents \u2013 A README badge lets your users pay for your AI usage",
+      "url": "https://boostmyagents.com/",
+      "observation": "opened \"boostmyagents | Community-funded AI usage for open source\" HTTP 200; reading view \"Documentation | boostmyagents\" at https://boostmyagents.com/docs/ HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "Yaystack.ch, check whether AI answer engines can see your website",
+      "url": "https://yaystack.ch/",
+      "observation": "opened \"Yaystack \u2014 Sichtbar werden in ChatGPT, Perplexity & Co.\" HTTP 200; reading view \"Yaystack \u2014 Sichtbar werden in ChatGPT, Perplexity & Co.\" at https://yaystack.ch/pricing HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "Giving Opus 5.5 a simulated paint canvas",
+      "url": "https://stillwet.art/",
+      "observation": "opened \"stillwet: paintings by AI models\" HTTP 200; reading view \"Paintings \u00b7 stillwet\" at https://stillwet.art/paintings/ HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "ImgKit \u2013 62 image tools that run in the browser",
+      "url": "https://imgkit.xyz",
+      "observation": "opened \"ImgKit \u2013 Free Image Compressor, Resizer & Converter\" HTTP 200; reading view \"Image Guides \u2013 HEIC, File Sizes, Formats & Photos \u00b7 ImgKit\" at https://imgkit.xyz/blog HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "photocn the open-source photo editor for shadcn/ui",
+      "url": "https://photocn.dev",
+      "observation": "opened \"photocn - The photo editor for shadcn/ui\" HTTP 200; reading view \"Introduction - photocn\" at https://photocn.dev/docs HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "Destroy Any Website with Stickman",
+      "url": "https://destroy.spritefusion.com/",
+      "observation": "opened \"Destroy Any Website - Sprite Fusion\" HTTP 200; reading view \"About Destroy Any Website: weapons, multiplayer and history\" at https://destroy.spritefusion.com/about HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "Quizzes with topic understanding and actionable insights",
+      "url": "https://forquiz.fusebytes.in/",
+      "observation": "opened \"ForQuiz | Quizzes and knowledge checks that report by topic\" HTTP 200; reading view \"See ForQuiz Work | Live Room, Self-Paced Check, Topic Report\" at https://forquiz.fusebytes.in/feel/ HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "Brickbrag \u2013 A multiplayer brick-building world in the browser",
+      "url": "https://brickbrag.com/",
+      "observation": "opened \"Brickbrag \u2013 build, explore, race and fly in a shared brick world\" HTTP 200; reading view \"What\u2019s new \u2013 Brickbrag\" at https://brickbrag.com/changelog.html HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "MEF LLM Studio \u2013 Learn how LLMs generate text, token by token",
+      "url": "https://www.mef-llm-studio.com/en/",
+      "observation": "opened \"Overview \u2014 M.E.F LLM Studio\" HTTP 200; reading view \"Features \u2014 M.E.F LLM Studio\" at https://www.mef-llm-studio.com/en/features/ HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "A daily F1 quiz: 10 questions, 12 seconds each",
+      "url": "https://the-daily-grid.vercel.app/l/CKAU3G4",
+      "observation": "opened \"The Daily Grid \u2014 Daily F1 Quiz\" HTTP 200; reading view \"The Daily Grid \u2014 Daily F1 Quiz\" at https://the-daily-grid.vercel.app/ HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "Accordia \u2013 Structured 1-on-1s for engineering managers",
+      "url": "https://www.getaccordia.com",
+      "observation": "opened \"Accordia: structured 1-on-1s for engineering managers\" HTTP 200; reading view \"Resource Library | Accordia\" at https://www.getaccordia.com/resources HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "A tool which estimates X statistics",
+      "url": "https://estimatemyx.com/",
+      "observation": "opened \"Estimate My X: Predict X (Twitter) Post Impressions\" HTTP 200; reading view \"Privacy Policy \u00b7 Estimate My X\" at https://estimatemyx.com/privacy HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "Gokudo Wiki \u2013 a database and tools site for a new Roblox game",
+      "url": "https://gokudowiki.com/",
+      "observation": "opened \"Gokudo Wiki \u2013 Codes, Fighting Styles, Stats & Tools\" HTTP 200; reading view \"Gokudo Character Stats \u2014 Height, Ethnicity, Gender & Customization | Gokudo Wiki\" at https://gokudowiki.com/stats/ HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "Viaduct \u2013 C4 models that coding agents can read and update",
+      "url": "https://c4.quietgridlabs.com/",
+      "observation": "opened \"Viaduct \u2014 C4 Modeling Tool with an MCP Server for AI Coding Agents\" HTTP 200; reading view \"Integrations \u2014 Viaduct | MCP, REST API, Webhooks\" at https://c4.quietgridlabs.com/integrations HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "I built a vacation optimizer and later found out tools like this exist",
+      "url": "https://longvacation.eu/",
+      "observation": "opened \"Holiday Optimizer & PTO Optimizer | Long Vacation - Vacation Optimizer\" HTTP 200; reading view \"Vacation Planner | Long Vacation - Vacation Optimizer\" at https://longvacation.eu/app HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "Loop-find, trim, rotate and crop videos in the browser, no upload",
+      "url": "https://clipyouredit.com/",
+      "observation": "opened \"clipyouredit: trim, rotate and crop video in your browser\" HTTP 200; reading view \"Help and how-to guides\" at https://clipyouredit.com/help HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "ChatGPT to Word \u2013 export a thread to a readable .docx",
+      "url": "https://chatgpt2word.com",
+      "observation": "opened \"ChatGPT to Word Converter \u2014 Free .docx Download | ChatGPT2Word\" HTTP 200; reading view \"How to Export ChatGPT to Word (.docx) \u2014 Step-by-Step | ChatGPT2Word\" at https://chatgpt2word.com/how-to-export-chatgpt-to-word HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "Web Scraper Toolkit",
+      "url": "https://kitdecoder.com/",
+      "observation": "opened \"KitDecoder \u2014 Free Online Encoder & Decoder Tools\" HTTP 200; reading view \"Encoding & Decoding Tools: Base64, URL, Hex | KitDecoder\" at https://kitdecoder.com/encoding/ HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    },
+    {
+      "title": "Mana \u2013 family organizer with an AI assistant",
+      "url": "https://ourmana.app/",
+      "observation": "opened \"Mana \u2014 Family Organizer, Shared Calendar & Lists\" HTTP 200; reading view \"Shared Family Calendar & Chore Planner \u2014 Mana\" at https://ourmana.app/family-calendar/ HTTP 200, Back restored the exact starting URL and normalized visible text; no observed page script errors."
+    }
+  ],
+  "counts": {
+    "visited": 200,
+    "clean": 64,
+    "untested": 43,
+    "not_green": 93
+  },
+  "sources": {
+    "hn": "16 October saved GET checks",
+    "route_a": "17 October saved report 36ef67e8d3bf98d3048f0dadf200c777",
+    "film": "13 October local evidence film, before the swarm studio"
+  }
+}

@@ -1,0 +1,11 @@
+--- before/Lib/configparser.py
++++ after/Lib/configparser.py
+@@ -563,7 +563,7 @@
+     # Regular expressions for parsing section headers and options
+     _SECT_TMPL = r"""
+         \[                                 # [
+-        (?P<header>[^]]+)                  # very permissive!
++        (?P<header>.+)                     # very permissive!
+         \]                                 # ]
+         """
+     _OPT_TMPL = r"""

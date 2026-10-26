@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Agentic Swarm Simulator sends model visitors through a real app, records where they stop, and turns confirmed failures into checks a team can run again.">
+  <title>Agentic Swarm Simulator</title>
+  <link rel="stylesheet" href="/landing.css">
+  <script src="/landing.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/" aria-label="Agentic Swarm Simulator home">
+    <span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span>Agentic Swarm Simulator</span>
+  </a>
+  <nav aria-label="Main navigation">
+    <a href="#repair">Repair loop</a>
+    <a href="#flow">How it works</a>
+    <a href="#models">Models</a>
+    <a href="#results">Results</a>
+    <a href="#status">What is live</a>
+    <a class="studio-link" href="/studio">Open the studio</a>
+  </nav>
+</header>
+
+<main>
+
+
+  <article class="paper">
+    <header class="title-block">
+      <p class="meta">Built with NVIDIA Nemotron on Nebius Token Factory</p>
+      <h1>Watch agents rehearse your release.</h1>
+      <p class="lede">For anyone who builds a web app: pick a real app below. Every turn, stop, and result comes from a saved browser run you can inspect.</p>
+<section id="repair" class="repair-case" aria-labelledby="repair-title">
+  <div class="repair-head"><p class="eyebrow">Repair loop / outside app / NVIDIA Nemotron Nano</p><span class="batch-mode">Recorded run, 26 Oct 2026</span></div>
+  <h2 id="repair-title">A visitor hit a 404. The fix was proven with the same goal.</h2>
+  <p class="repair-lede">Overturn is a live public app by the same author. Its menu works on Vercel only because of a rewrite rule. Served as plain files, as any other host or a local preview would, About answers 404. A Nemotron visitor found that, the loop handed back a test, and the fix was checked by trying the same goal again.</p>
+  <p class="repair-goal">Goal given to the visitor: <b>Open the About page and read why Overturn exists</b></p>
+  <ol class="repair-steps">
+    <li class="bad"><a href="/studio#replays/overturn-nemotron-404"><img src="/repair/overturn/visit-before/v-nemotron-nano-t1-51.png" alt="The 404 page the visitor reached after clicking About" loading="lazy"></a><span class="k">1 · Visitor stuck</span><p>Clicked About: 404. Tried Why this exists: 404. Gave up: <q>error page blocked why this exists link</q></p><a href="/studio#replays/overturn-nemotron-404">Replay every screen</a></li>
+    <li class="bad"><span class="k">2 · Test handed back, red</span><pre>AssertionError: clicking 'ABOUT'
+opened a page that answered 404</pre><p>Run on the original commit bd6a868.</p><a href="/repair/overturn/test_returned_path.py" download>Download the test</a> <a href="/repair/overturn/check-before.log">Red log</a></li>
+    <li><span class="k">3 · The fix</span><pre>- href=&quot;/about&quot;
++ href=&quot;/about.html&quot;</pre><p>Same change for Market and Story in 5 files. Applied as its own commit dd55810.</p><a href="/repair/overturn/portable-menu-links.patch" download>Download the patch</a></li>
+    <li class="good"><span class="k">4 · Same test, green</span><pre>1 passed</pre><p>On the fixed commit. Also green on the deployed original, so the fault depends on the host.</p><a href="/repair/overturn/check-after.log">Green log</a></li>
+    <li class="good"><a href="/studio#replays/overturn-nemotron-fixed"><img src="/repair/overturn/visit-after/v-nemotron-nano-t1-02.png" alt="The About page the second visitor reached after the fix" loading="lazy"></a><span class="k">5 · Same goal, reached</span><p>A fresh Nemotron visitor opened About; a second call agreed the screen shows why Overturn exists.</p><a href="/studio#replays/overturn-nemotron-fixed">Replay every screen</a></li>
+  </ol>
+  <p class="repair-proof">Model: <code>nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B</code> through Nebius Token Factory. 13 calls, every reply with usage and that model id: 16,317 prompt and 617 completion tokens, 0.00113 USD at listed rates, not an invoice. This page replays that run. It makes no model call and repairs nothing.</p>
+  <nav class="board-product" aria-label="Repair case"><a href="/repair/overturn/">Open the full repair report ↗</a><a href="/repair/overturn/receipt.json">Receipt with commits and hashes</a><a href="https://github.com/Morkeeth/overturn">Overturn source</a></nav>
+  <details class="batch-setup"><summary>Check it, or run it on your own app</summary>
+    <p>From this project's source, with Python, git and Playwright Chromium. No key: rebuild both commits from GitHub and rerun the test, red then green.</p>
+    <p><code>python -m sim.repair_loop recheck examples/overturn</code></p>
+    <p>Your own static site, your own Token Factory key. Two Nemotron visits, each stopped at your cap.</p>
+    <p><code>CONFIRM_SPONSOR_SPEND=RUN python -m sim.repair_loop run --repo URL --ref COMMIT --site-dir web --goal "..." --patch fix.patch --visitor nemotron --run-cap-usd 0.05 --output ../repair-run</code></p>
+    <p>Limits: static sites served as files; one visitor per side, so this is a reproduction and a rerun, not a success rate. Visitors are models, not people, and only read.</p>
+  </details>
+</section>
+<section id="app-queue" class="app-queue" aria-labelledby="batch-title">
+  <div class="batch-heading"><div><p class="eyebrow">The mission board / NVIDIA Nemotron</p><h2 id="batch-title">Follow the work.</h2></div><span class="batch-mode">Recorded playback</span></div>
+  <p class="batch-intro">Replay a real visit. Inspect the evidence. Then rehearse your own app.</p>
+  <div class="recorded-runway" aria-labelledby="runway-title">
+    <div class="runway-head"><strong id="runway-title">PuppyTime / Open the Donate page</strong><button id="mission-motion" type="button" aria-pressed="false">Play recorded run</button></div>
+    <svg id="mission-track" viewBox="0 0 600 220" role="img" aria-label="PuppyTime recorded visitors moving through Task, Visit, Check and Keep">
+      <g class="track-stations"><text x="48" y="25">Task</text><text x="205" y="25">Visit</text><text x="365" y="25">Check</text><text x="525" y="25">Keep</text></g>
+      <g id="track-lanes"></g>
+    </svg>
+    <p id="runway-event" role="status">Loading recorded visitor actions.</p>
+    <p id="mission-caption">Source: puppytime-lost, retained browser run. Playback uses recorded step timing, compressed only between stages. No new model call. This is separate from the app batch below.</p>
+    <a href="/studio#replays/puppytime-lost">Inspect this replay, screens and returned check ↗</a>
+  </div>
+  <nav class="board-product" aria-label="Product actions"><a href="#app-plan-rows">App queue ↓</a><a href="#batch-runner">Run your own app ↓</a><a href="/studio">Results and studio ↗</a></nav>
+  <h3>Fresh-five app missions</h3>
+  <p>Source batch: browser launch failed for each scoped app. These are tester failures, not app defects.</p>
+  <div id="app-plan-rows" class="mission-tabs" role="group" aria-label="Choose an app mission"></div>
+  <div class="mission-screen">
+    <div class="mission-address"><span aria-hidden="true">● ● ●</span><span id="mission-url">Loading scoped app</span></div>
+    <div class="mission-content"><div><p class="eyebrow" id="mission-kind">Selected mission</p><h3 id="mission-name">Loading</h3><p id="mission-task"></p><p id="mission-status" role="status"></p><a id="mission-result" hidden>Open saved result</a></div><div id="mission-scene" class="app-scene" aria-label="Selected app evidence"></div></div>
+  </div>
+  <p id="fresh-five-source" class="batch-source"></p>
+  <p id="batch-summary" role="status">Reading the local batch store.</p>
+  <p id="app-plan-source" class="batch-source">Loading the scoped plan.</p>
+  <details id="batch-runner" class="batch-setup"><summary>Run with your own key on your machine</summary><p>Enter your Nebius key in the local runner's hidden prompt. The website never receives it. Page text and screenshots can go to the model provider.</p><p><code>python3 -m sim.app_batch --store /private/tmp/nvidia-app-runs --stop-usd 1 --execute</code></p><p>The amount is your chosen spending stop, not measured cost. Follow RUN.md for setup, then serve the same store to see its saved states here.</p></details>
+  <details class="batch-setup"><summary>Past batches and recorded runs</summary><div id="app-batch-history"></div></details>
+</section>
+      <section class="swarm-hero" aria-labelledby="swarm-hero-title">
+        <div class="swarm-copy">
+          <p class="eyebrow">Recorded release rehearsal</p>
+          <h2 id="swarm-hero-title">Three visitors. One job. Every path kept.</h2>
+          <div class="app-picker" role="group" aria-label="Pick a recorded app">
+            <button type="button" data-replay="puppytime-lost" aria-pressed="true">PuppyTime</button>
+            <button type="button" data-replay="airiq-about-404" aria-pressed="false">AirIQ</button>
+            <button type="button" data-replay="liarsdice-click-unseen" aria-pressed="false">Liar's Dice</button>
+          </div>
+          <p id="swarm-job" class="swarm-job">Job: Open the Donate page</p>
+          <p id="swarm-result" class="swarm-result" aria-live="polite">2 of 3 test visitors got the job done in one try. 1 got stuck.</p>
+          <div class="swarm-actions">
+            <button id="swarm-replay" type="button">Replay recorded paths</button>
+            <a id="swarm-open" href="/studio#replays/puppytime-lost">Open this result</a>
+          </div>
+          <p id="swarm-source" class="swarm-source">Source run: puppytime-lost · 3 retained visitors · playback makes no model call.</p>
+        </div>
+        <div class="swarm-stage">
+          <svg id="swarm-map" viewBox="0 0 760 390" role="img" aria-label="Recorded visitor paths through PuppyTime"></svg>
+          <p class="swarm-key"><span></span> Each colour is one retained visitor. Lines stay visible when motion is reduced.</p>
+        </div>
+      </section>
+
+      <ol class="journey" aria-label="Product journey">
+        <li><span>1</span><b>Land</b><small>See the swarm working</small></li>
+        <li><span>2</span><b>Pick an app</b><small>Choose a retained run</small></li>
+        <li><span>3</span><b>Watch rehearsal</b><small>Follow every agent path</small></li>
+        <li><span>4</span><b>Read result</b><small>Open evidence and the check</small></li>
+      </ol>
+      <section class="result-board" aria-labelledby="result-board-title">
+        <div class="result-board-head">
+          <div>
+            <p class="eyebrow">Fresh outside evidence</p>
+            <h2 id="result-board-title">Three public tools. Three visitors each. One checked task.</h2>
+          </div>
+          <dl class="result-summary" aria-label="Outside rehearsal summary">
+            <div><dt>Outside tools</dt><dd id="outside-tools">3</dd></div>
+            <div><dt>Agent attempts</dt><dd id="outside-attempts">9</dd></div>
+            <div><dt>Checked passes</dt><dd id="outside-passes">2/9</dd></div>
+          </dl>
+        </div>
+        <p id="outside-scope" class="result-scope">Fresh agent attempts on installed releases of three public tools. A failure is not called a tool defect when the canonical control passes. No earlier tool trial or cached case is substituted here.</p>
+        <div id="outside-results" class="tool-results" aria-label="Fresh outside rehearsal results">
+          <article><div class="tool-rank"><span>01</span><strong>Git</strong></div><p>List only the file paths changed from tag fixture-base to tag fixture-head, one path per line.</p><div class="score"><span>2/3</span><small>independent output checks</small></div><p class="outcome">2 of 3 visitors completed the checked task. 1 visitor response failure; the tool's canonical control passed.</p><a href="https://github.com/git/git">git version 2.50.1 (Apple Git-155)</a></article>
+          <article><div class="tool-rank"><span>02</span><strong>ripgrep</strong></div><p>Find the exact fixed string ERROR_TOKEN in this directory, include line numbers, and respect .ignore.</p><div class="score"><span>0/3</span><small>independent output checks</small></div><p class="outcome">0 of 3 visitors completed the checked task. 3 visitor response failures; the tool's canonical control passed.</p><a href="https://github.com/BurntSushi/ripgrep">ripgrep 15.2.0 (rev e89fff89ac)</a></article>
+          <article><div class="tool-rank"><span>03</span><strong>jq</strong></div><p>Read records.json, sort the records by name, and return each name and value as tab-separated text.</p><div class="score"><span>0/3</span><small>independent output checks</small></div><p class="outcome">0 of 3 visitors completed the checked task. 3 visitor response failures; the tool's canonical control passed.</p><a href="https://github.com/jqlang/jq">jq-1.7.1-apple</a></article>
+        </div>
+        <div class="try-entry">
+          <div><p class="eyebrow">Try it yourself</p><h3>One URL. One job. Three visitors.</h3><p>Start with a staging URL now. GitHub repo import needs OAuth registration before it can be enabled.</p></div>
+          <a href="/studio">Open the release rehearsal</a>
+        </div>
+        <div class="research-bridge">
+          <p class="eyebrow">What the field measures</p>
+          <p><a href="https://arxiv.org/abs/2307.16789">ToolBench</a> tests API use at scale. <a href="https://gorilla.cs.berkeley.edu/leaderboard">BFCL</a> tests function choice, arguments, multi-turn use, and agentic tasks. <a href="https://arxiv.org/abs/2408.04682">ToolSandbox</a> checks stateful progress. This project asks a narrower release question: with the task, model, seeds, and checker held still, did the proposed tool change help?</p>
+        </div>
+        <p id="outside-source" class="result-source">Source: <code>web/landing/outside-run.json</code>. Each pass is an exact output check, not a model claim.</p>
+      </section>
+      <section id="apps" class="apps" aria-labelledby="apps-head">
+        <h2 id="apps-head" class="apps-head">122 real hackathon apps, 113 hackathons</h2>
+        <p>We cloned each Devpost entry unedited and served it on our machine. Three Nemotron visitors got one task each: open a page from the app's own menu. These are the five ways they got stuck. Only the first is a fault in the app. The other four are limits of our test setup or of the model, and we name them so they are not counted against the app.</p>
+        <ol class="kinds">
+          <li><span class="tag defect">App defect</span><h3>A link to a page that is not there</h3><p class="count">23 visitors in 10 apps</p><p>The link answered 404. In 2 of these apps the page is missing from the published repo. We fixed both below, with AirIQ from an earlier run.</p><a href="/studio#replays/edunova-study-404">Replay: EduNova AI</a></li>
+          <li><span class="tag">Our setup</span><h3>A server app served as plain files</h3><p class="count">39 visitors in 14 apps</p><p>Links such as /login need the app's own backend, and we did not start it.</p><a href="/studio#replays/blaze-server-routes">Replay: Blaze</a></li>
+          <li><span class="tag">Our setup</span><h3>A click we could not make or could not see</h3><p class="count">101 visitors in 50 apps</p><p>The button was off the screen or covered, or it worked but changed nothing we compare.</p><a href="/studio#replays/liarsdice-click-unseen">Replay: Liar's Dice</a></li>
+          <li><span class="tag">Our setup</span><h3>Stopped at a sign-in page</h3><p class="count">43 visitors in 15 apps</p><p>The visitors only read and never sign in, so they stopped where a page offered an account.</p><a href="/studio#replays/streeteats-sign-in">Replay: StreetEats</a></li>
+          <li><span class="tag">The model</span><h3>Lost on a working app</h3><p class="count">107 visitors in 51 apps</p><p>The link worked, but the visitor picked other links and ran out of steps.</p><a href="/studio#replays/puppytime-lost">Replay: PuppyTime</a></li>
+        </ol>
+        <p class="small">Some visitors did get through. In 76 apps at least one visitor reached the page it was asked to open. At first the judge confirmed 25, because it never took a page's own heading as evidence. After that rule was fixed for "open a page" tasks, it confirmed 44, or 46 if two weak name matches are counted: C-HUD Vision, whose page shares the app's name, and bytekode, where "Join" matched the heading "Join Socials". Source: <a href="#ref-6">[6]</a>.</p>
+        <p class="small">Counts are stuck visitors and the apps they were in, from the per-visitor causes of the 22 October run. One visitor can be stuck in one way only; one app can show several ways. Source: <a href="#ref-6">[6]</a>.</p>
+        <div class="table-wrap">
+          <table class="fixes">
+            <caption><span class="fig">Table 0.</span> The three app defects we fixed, before and after. Same three visitors, same task, the app's own repo with one change. Source: <a href="#ref-1">[1]</a>. None of the three repos publishes a licence; their screens are shown here to report the fault and its fix.</caption>
+            <thead><tr><th scope="col">App</th><th scope="col">Before</th><th scope="col">The change</th><th scope="col">After</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">AirIQ</th><td><a href="/studio#replays/airiq-about-404">3 visitors hit a 404</a></td><td>Add the About Us page the menu links to<span class="lic">The repo publishes no licence.</span></td><td><a href="/studio#replays/airiq-about-fixed">All 3 open the page</a></td></tr>
+              <tr><th scope="row">EduNova AI</th><td><a href="/studio#replays/edunova-study-404">2 visitors hit a 404</a></td><td>Point the sidebar links at pages that exist<span class="lic">The repo publishes no licence.</span></td><td><a href="/studio#replays/edunova-study-fixed">No visitor hits a 404; test green</a></td></tr>
+              <tr><th scope="row">Water Buddy</th><td><a href="/studio#replays/waterbuddy-v3-404">2 visitors hit a 404</a></td><td>Remove the link to a folder that was never published<span class="lic">The repo publishes no licence.</span></td><td><a href="/studio#replays/waterbuddy-v3-fixed">No click answers 404; test green</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="all-replays">All <!--replay-count--> recorded swarms are in the <a href="/studio">studio</a>, with every screen, path and the test each one hands back.</p>
+      </section>
+      <p class="actions"><a class="start" href="/studio#replays/broken-demo-0003">Watch a recorded swarm</a> <span class="then">then press <b>Ask Nemotron now</b> for a live explanation</span></p>
+      <p class="example"><span class="label">Example.</span> Three agents tried to read the getting started guide on a demo notes app whose guide link is broken. All three hit the same Not found page and stopped there. You see each agent's path, the red screen, what it said versus what the screen shows, and a Playwright test of the stuck path. The honest run on a working sample app, where 0 of 5 finished, sits next to it in the same list. <a href="#replay">Or watch the 75-second replay.</a></p>
+      <p class="abstract"><span class="label">About this note.</span> Agentic Swarm Simulator sends goal-driven model visitors through a real app, records every screen and decision, and turns a confirmed failure path into a check your team can run again. Below: the method, the two model roles, the recorded results so far, and what the public build does and does not do.</p>
+      <dl class="keyfacts" aria-label="Current product evidence">
+        <div><dt>Recorded browser swarms</dt><dd><!--replay-count--></dd><dd class="src">Source: <a href="#ref-1">[1]</a></dd></div>
+        <div><dt>Before and after code cases</dt><dd>10</dd><dd class="src">Source: <a href="#ref-2">[2]</a></dd></div>
+        <div><dt>Completed the latest guide task</dt><dd>0 of 5</dd><dd class="src">Source: <a href="#ref-1">[1]</a>, run rerun-2335</dd></div>
+      </dl>
+      <nav class="toc" aria-label="Contents">
+        <p class="label">Contents</p>
+        <ol>
+          <li><a href="#pitch">The problem</a></li>
+          <li><a href="#buyers">Who it is for</a></li>
+          <li><a href="#flow">Method</a></li>
+          <li><a href="#models">Models and infrastructure</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#status">Live versus simulated</a></li>
+          <li><a href="#limits">Limits</a></li>
+          <li><a href="#replay">Product replay</a></li>
+          <li><a href="#deadline">What comes next</a></li>
+          <li><a href="#references">References</a></li>
+        </ol>
+      </nav>
+    </header>
+
+    <section id="pitch">
+      <h2><span class="n">1</span>The problem</h2>
+      <p class="lede">You know the route through your app. A new visitor does not.</p>
+      <p>Give the simulator one URL and one job. A small cast of model visitors opens the app in separate browsers and tries to finish the job. You see what each visitor read, clicked, missed, and claimed. A second model checks the screen evidence. The result keeps failures visible instead of turning them into a polished score.</p>
+    </section>
+
+    <section id="buyers">
+      <h2><span class="n">2</span>Who it is for</h2>
+      <p class="lede">A release check for teams that ship fast.</p>
+      <ol class="plain">
+        <li><strong>Founder shipping an agent-built app.</strong> Check whether a fresh visitor can complete the first job before you send traffic.</li>
+        <li><strong>Agency handing an app to a client.</strong> Give the client a replay and a repeatable acceptance check they can inspect.</li>
+        <li><strong>Product team changing an agent flow.</strong> Compare the same goal before and after a model, prompt, interface, or tool change.</li>
+      </ol>
+    </section>
+
+    <section id="flow">
+      <h2><span class="n">3</span>Method</h2>
+      <p class="lede">From one job to evidence you can inspect.</p>
+      <ol class="steps">
+        <li><h3>3.1 Set the job</h3><p>Enter a URL and one plain task. The current public service shows recorded work. New paid runs stay local and require an explicit model key and spending stop.</p></li>
+        <li><h3>3.2 Send the swarm</h3><p>Up to five NVIDIA Nemotron Nano visitors open separate Chromium sessions. One uses a phone viewport. They can read, click, scroll, and go back. They cannot type, sign in, pay, upload, or save.</p></li>
+        <li><h3>3.3 Keep every path</h3><p>The simulator saves the page text, available controls, chosen action, browser response, and screenshot at each step. Each colour on the map is one recorded visitor.</p></li>
+        <li><h3>3.4 Check the claim</h3><p>When a visitor says the job is complete, Nemotron 3.5 Super VL checks the final screen image and its text. Local deterministic rules also check that the required moves happened.</p></li>
+        <li><h3>3.5 Return a repeatable check</h3><p>A confirmed error path can become a small browser regression test. Unconfirmed claims, model failures, and unfinished visits remain visible as limits.</p></li>
+        <li><h3>3.6 Run the same job after a fix</h3><p>Compare the exact journey before and after the change. The longer-term goal is to test the same job with consenting people and measure where the simulation was wrong.</p></li>
+      </ol>
+
+      <figure>
+        <img src="/landing-media/swarm-paths.png" alt="Recorded swarm paths in the live studio">
+        <figcaption><span class="fig">Figure 1.</span> Recorded browser paths, screenshots, and stuck endings. Screenshot of the studio swarm tab, run broken-demo-0003. Source: <a href="/studio#replays/broken-demo-0003">studio</a>, <a href="#ref-1">[1]</a>.</figcaption>
+      </figure>
+      <figure>
+        <img src="/landing-media/before-after.png" alt="Before and after code cases in the live studio">
+        <figcaption><span class="fig">Figure 2.</span> Ten controlled code cases scored before and after a fix. Screenshot of the studio before and after tab. Source: <a href="/studio#cases">studio</a>, <a href="#ref-2">[2]</a>.</figcaption>
+      </figure>
+      <figure>
+        <img src="/landing-media/evidence-library.png" alt="Evidence library in the live studio">
+        <figcaption><span class="fig">Figure 3.</span> Saved studies and earlier product checks, kept separate by what they prove. Screenshot of the studio evidence library tab. Source: <a href="/studio#library">studio</a>, <a href="#ref-3">[3]</a>.</figcaption>
+      </figure>
+    </section>
+
+    <section id="models">
+      <h2><span class="n">4</span>Models and infrastructure</h2>
+      <p class="lede">Two model roles, one inspectable handoff.</p>
+      <div class="table-wrap">
+        <table>
+          <caption><span class="fig">Table 1.</span> Model roles. Model and provider: <code>model</code>, <code>judge_model</code> and <code>provider</code> fields in each run record <a href="#ref-1">[1]</a>. Input and job describe the simulator code.</caption>
+          <thead><tr><th scope="col">Role</th><th scope="col">Model</th><th scope="col">Provider</th><th scope="col">Input</th><th scope="col">Job</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">The visitor</th><td><code>nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B</code></td><td>Nebius Token Factory</td><td>Page address, title, readable text, and numbered links or controls</td><td>Decide if the task is complete, then choose the next read-only browser action</td></tr>
+            <tr><th scope="row">The evidence judge</th><td><code>nvidia/Nemotron-3.5-Super-VL</code></td><td>Nebius Token Factory</td><td>The ordered path, final page text, and a compressed screenshot</td><td>Check whether copied words on the visible screen support the completion claim</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>NVIDIA parts used:</strong> both Nemotron models run through Nebius Token Factory's OpenAI-compatible inference service. Chromium runs on the application host. Local task rules, evidence checks, cost reservations, and saved replays are our code. On the public Cloud Run service, the Ask Nemotron button in the studio makes one live Nemotron Nano call through Token Factory to explain a recorded run. Calls are rate-limited and capped, and each one is logged with its tokens and cost. The hosted page does not start new swarms, and no visitor text reaches a model.</p>
+    </section>
+
+    <section id="results">
+      <h2><span class="n">5</span>Results</h2>
+      <p class="lede">The first five recorded swarms ended without a confirmed completion.</p>
+      <div class="table-wrap">
+        <table class="num">
+          <caption><span class="fig">Table 2.</span> The first five recorded browser swarms. The others are in the studio and in Table 0. Task for the first three: "Read the getting started guide"; for the two AirIQ runs: "Read the About page". Source: per-visitor <code>tries</code>, <code>counts.steps</code>, <code>model_calls</code> and <code>model_cost_usd</code> in each run record <a href="#ref-1">[1]</a>.</caption>
+          <thead><tr><th scope="col">Run</th><th scope="col">Finished (UTC)</th><th scope="col">Visitors</th><th scope="col">Stuck</th><th scope="col">Did not finish</th><th scope="col">Claimed done</th><th scope="col">Confirmed done</th><th scope="col">Steps</th><th scope="col">Model calls</th><th scope="col">Model cost (USD)</th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><a href="/studio#replays/swarm-2326">swarm-2326</a></th><td>17 Oct 21:30</td><td>5</td><td>5</td><td>0</td><td>0</td><td>0</td><td>28</td><td>56</td><td>0.0015</td></tr>
+            <tr><th scope="row"><a href="/studio#replays/rerun-2335">rerun-2335</a></th><td>17 Oct 21:43</td><td>5</td><td>4</td><td>1</td><td>1</td><td>0</td><td>28</td><td>55</td><td>0.0021</td></tr>
+            <tr><th scope="row"><a href="/studio#replays/broken-demo-0003">broken-demo-0003</a></th><td>17 Oct 22:04</td><td>3</td><td>3</td><td>0</td><td>0</td><td>0</td><td>16</td><td>32</td><td>0.0008</td></tr>
+            <tr><th scope="row"><a href="/studio#replays/airiq-about-404">airiq-about-404</a></th><td>22 Oct 07:24</td><td>3</td><td>2</td><td>0</td><td>3</td><td>0</td><td>16</td><td>35</td><td>0.0025</td></tr>
+            <tr><th scope="row"><a href="/studio#replays/airiq-about-fixed">airiq-about-fixed</a></th><td>22 Oct 07:29</td><td>3</td><td>3</td><td>0</td><td>3</td><td>0</td><td>16</td><td>34</td><td>0.0037</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small">In rerun-2335 one visitor claimed completion and the judge did not confirm it. The phone visitor in that run did not finish. The summary <code>counts</code> block in the two five-visitor records lists 4 visitors, one fewer than the per-visitor records; this table counts the per-visitor records. The first two runs used the working sample app; broken-demo-0003 used a deliberately broken demo app. The AirIQ runs used a real hackathon entry, cloned unedited: its About Us link answered 404; on a local fork with the page added, all three visitors opened it, and the judge quoted only the heading, so none is counted as confirmed. In airiq-about-404 the phone visitor ended as claimed, not stuck.</p>
+
+      <div class="table-wrap">
+        <table class="num">
+          <caption><span class="fig">Table 3.</span> Before and after code cases, runs passed out of 10 per side. Source: <code>before.passed</code> and <code>after.passed</code> in <a href="#ref-2">[2]</a>.</caption>
+          <thead><tr><th scope="col">Case</th><th scope="col">Task</th><th scope="col">Before</th><th scope="col">After</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">CASE-01</th><td>Reject an abbreviated approval flag</td><td>1</td><td>8</td></tr>
+            <tr><th scope="row">CASE-02</th><td>Read the endpoint from a section containing a closing bracket</td><td>1</td><td>6</td></tr>
+            <tr><th scope="row">CASE-03</th><td>Keep the endpoint when refreshing a section from itself</td><td>1</td><td>2</td></tr>
+            <tr><th scope="row">CASE-04</th><td>Reject a contact field outside the CSV schema</td><td>1</td><td>9</td></tr>
+            <tr><th scope="row">CASE-05</th><td>Identify the header of the registered readings CSV</td><td>6</td><td>8</td></tr>
+            <tr><th scope="row">CASE-06</th><td>Map a contact with a one-pass column iterator</td><td>1</td><td>4</td></tr>
+            <tr><th scope="row">CASE-07</th><td>Save compact JSON while keeping all values</td><td>1</td><td>10</td></tr>
+            <tr><th scope="row">CASE-08</th><td>Extract event IDs from a JSON-lines stream in order</td><td>3</td><td>4</td></tr>
+            <tr><th scope="row">CASE-09</th><td>Keep visible Unicode in a release handoff</td><td>4</td><td>10</td></tr>
+            <tr><th scope="row">CASE-10</th><td>Wrap a message without losing its hyphenated text</td><td>0</td><td>9</td></tr>
+          </tbody>
+          <tfoot><tr><th scope="row">Total</th><td>100 runs per side</td><td>19</td><td>70</td></tr></tfoot>
+        </table>
+      </div>
+      <p class="small">Scope, quoted from the case file: "cached real Nano command-line agents on controlled historical CPython tool fixes; not browser or human users". Tool scores use deterministic checkers, not Super VL, and are not pooled with the guide task. A judge-prompt repair on the guide task itself (CASE-11) showed no improvement.</p>
+    </section>
+
+    <section id="status">
+      <h2><span class="n">6</span>Live versus simulated</h2>
+      <p class="lede">What this public build does today.</p>
+      <div class="two-col">
+        <div>
+          <h3>6.1 Live now</h3>
+          <ul>
+            <li>This landing page and the complete recorded studio</li>
+            <li><!--replay-count--> saved browser swarms with real screenshots and model-call records <a href="#ref-1">[1]</a></li>
+            <li>Ten cached before and after code cases with fixed checkers <a href="#ref-2">[2]</a></li>
+            <li>A 200-site, read-only first-visit evidence library <a href="#ref-3">[3]</a></li>
+            <li>Replay, path inspection, and test download with no new model call</li>
+          </ul>
+        </div>
+        <div>
+          <h3>6.2 Simulated or not yet live</h3>
+          <ul>
+            <li>The visitors are models, not people or demographic evidence</li>
+            <li>The hosted service cannot start a new swarm</li>
+            <li>The latest working-guide run completed 0 of 5 tasks <a href="#ref-1">[1]</a></li>
+            <li>Human comparison is 0 of 30 planned labels <a href="#ref-4">[4]</a></li>
+            <li>No live checkout, paid human test, customer sale, or validated revenue forecast</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="limits">
+      <h2><span class="n">7</span>Limits</h2>
+      <p class="lede">What the recorded results can and cannot show.</p>
+      <ol class="plain">
+        <li>Test visitors are an NVIDIA model reading and clicking your pages. They are not people, and nothing here is a quote from a real user. <a href="#ref-1">[1]</a></li>
+        <li>They only read. Nothing was typed, no account was used, and anything behind sign-in was left untested. <a href="#ref-1">[1]</a></li>
+        <li>Three states are kept apart. Claimed: the visitor said the job was done. Screen confirmed: a second call, given the steps and the text of that screen, agreed and pointed at words on it. Job completed: the steps also show every part the task names. The model calls can be wrong. <a href="#ref-1">[1]</a></li>
+        <li>The ten code cases are command-line tool fixes on historical CPython code, not browser app fixes. Their gains say nothing yet about browser visitors or people. <a href="#ref-2">[2]</a></li>
+        <li>A confirmed completion has been recorded on a real app: in the PuppyTime replay, 2 of 3 visitors opened the Donate page and the judge confirmed both. It is one app, so it shows the path works, not how often. <a href="#ref-1">[1]</a></li>
+        <li>The first-visit study is one saved visit per app, timed once on one network. It is not a speed ranking. <a href="#ref-3">[3]</a></li>
+      </ol>
+    </section>
+
+    <section id="replay">
+      <h2><span class="n">8</span>Product replay</h2>
+      <p class="lede">Watch the recorded studio in 75 seconds.</p>
+      <p>This replay shows the assembled interface, the latest unfinished swarm, the controlled before and after cases, and the evidence library. Playback makes no model call.</p>
+      <figure>
+        <video controls preload="metadata" poster="/landing-media/swarm-paths.png" src="/landing-media/swarm-replay.mp4">Your browser does not support video playback.</video>
+        <figcaption><span class="fig">Figure 4.</span> Screen recording of the studio, 75.0 seconds (ffprobe on <code>swarm-replay.mp4</code>). No new model call is made during playback.</figcaption>
+      </figure>
+    </section>
+
+    <section id="deadline">
+      <h2><span class="n">9</span>What comes next</h2>
+      <p class="lede">Three open research steps, in order.</p>
+      <ol>
+        <li>Prove one complete URL to swarm to confirmed fix to rerun journey.</li>
+        <li>Label a frozen case set and compare it with a basic browser or script baseline.</li>
+        <li>Run the same job with a consenting outside builder.</li>
+      </ol>
+    </section>
+
+    <section id="references">
+      <h2><span class="n">10</span>References</h2>
+      <ol class="refs">
+        <li id="ref-1">Run records for every replay in the studio, <code>web/studio/fixtures/replays/&lt;run&gt;/result.json</code>, each with the sha256 of its source in <code>web/studio/fixtures/SOURCES.json</code>. Served at <a href="/api/studio/replays/swarm-2326">/api/studio/replays/swarm-2326</a>, <a href="/api/studio/replays/rerun-2335">rerun-2335</a>, <a href="/api/studio/replays/broken-demo-0003">broken-demo-0003</a>, <a href="/api/studio/replays/airiq-about-404">airiq-about-404</a>, <a href="/api/studio/replays/airiq-about-fixed">airiq-about-fixed</a>.</li>
+        <li id="ref-2">Before and after case file, <code>web/studio/fixtures/cases.json</code>, copied from the 17 October case run. Served at <a href="/api/studio/cases">/api/studio/cases</a>.</li>
+        <li id="ref-3">Show HN first-visit study, 16 October 2026: 200 apps attempted, 22 skipped before the visit by policy, 64 passed the read-only gate, 20 shown. Served at <a href="/studio/evidence/hn-first-visits.txt">/studio/evidence/hn-first-visits.txt</a>.</li>
+        <li id="ref-4">Blind human label sheet for the same study, 0 of 30 rows filled. Local file, not in the public package.</li>
+        <li id="ref-5">Nebius and NVIDIA hackathon rules on Devpost, <a href="https://nebiusglobalaihackathon.devpost.com/">nebiusglobalaihackathon.devpost.com</a>, read 18 October 2026: deadline 30 October 2026, 17:00 UTC.</li>
+        <li id="ref-6">The 122-app run, 22 October 2026: one record per app with each visitor's cause (<code>classified.jsonl</code>), the readable check of each cause (<code>CLUSTERS.md</code>), and the re-judge of the 52 apps that were reached but not confirmed (<code>rejudge.jsonl</code>). Local lane files, not in the public package.</li>
+      </ol>
+    </section>
+  </article>
+</main>
+
+<footer>
+  <strong>Agentic Swarm Simulator</strong>
+  <p>Recorded evidence, not a claim that simulated visitors are real users.</p>
+  <a href="/studio">Open the studio</a>
+</footer>
+<script src="/app-queue.js" defer></script>
+</body>
+</html>

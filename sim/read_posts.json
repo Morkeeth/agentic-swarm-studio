@@ -1,0 +1,11 @@
+{
+  "note": "Named POST requests the browser check may send because they only read. Everything else that is not GET, HEAD or OPTIONS stays blocked. Match is exact host and path, POST only.",
+  "allow": [
+    {
+      "name": "STRIVE public day card read",
+      "host": "kqxasvolwtrczusjhlli.supabase.co",
+      "path": "/rest/v1/rpc/read_day_card",
+      "seen": "STRIVE public feed read, 14 Oct 2026; read-only SQL reviewed before allowing this endpoint."
+    }
+  ]
+}
