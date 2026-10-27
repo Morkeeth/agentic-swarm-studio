@@ -18,7 +18,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from sim import app_swarm, studio_test
+from sim import app_swarm, hosted_cost, studio_test
 
 SCHEMA = 'outside-repair-loop/1'
 FIX_AUTHOR = ['-c', 'user.name=Repair Loop', '-c', 'user.email=repair-loop@example.invalid']
@@ -86,23 +86,29 @@ def _loopback(url):
         raise ValueError('Visitors only run against a loopback copy of an app you own.')
 
 
-def nemotron_visit(url, goal, output, max_steps=4, run_cap_usd=0.05):
-    """One NVIDIA Nemotron Nano visitor through Nebius Token Factory. Every call is reserved against the spend record first."""
+def nemotron_visit(url, goal, output, max_steps=4, run_cap_usd=0.05, judge=None):
+    """One NVIDIA Nemotron Nano visitor through Nebius Token Factory. Every call is reserved against the spend record first.
+    With `judge`, a separate model checks the completion claim instead of the visitor confirming its own."""
     _loopback(url)
     if app_swarm.needs_write(goal): raise ValueError('Only a read-only goal is permitted.')
+    if judge and hosted_cost.judge_model() != judge.model:   # the spend stop prices only the operator-set judge
+        raise ValueError(f'Set {hosted_cost.JUDGE_MODEL_ENV}={hosted_cost.JUDGE_MODEL} before running with a judge.')
     p = Path(output); p.mkdir(parents=True, exist_ok=False)
     app_swarm.require_key(); app_swarm.require_browser()
     person = {**app_swarm.CAST[0], 'id': 'nemotron-nano', 'goal': goal, 'max_steps': max_steps}
     budget = app_swarm.Budget(str(p.resolve()) + '/repair-loop', max_steps * 3, run_cap_usd)
     shared = {'blocked': [], 'errors': [], 'read_posts': []}
     def publish(row): (p / 'visitor.json').write_text(json.dumps(row, indent=2) + '\n')
-    row = app_swarm._visit_one(p, person, app_swarm.default_client_for(person), budget, url, 0, time.monotonic(), publish, shared)
+    row = app_swarm._visit_one(p, person, app_swarm.default_client_for(person), budget, url, 0, time.monotonic(), publish, shared, judge=judge)
     spend = budget.summary()
     returned = spend['models']
     result = {'schema': 'nemotron-visitor/1', 'provider': app_swarm.PROVIDER, 'model_requested': spend['model'], 'models_returned': returned,
-              'sponsor_model_evidence': bool(returned) and set(returned) == {spend['model']} and spend['calls_without_usage'] < spend['model_calls'],
-              'spend': spend, 'visitor': row, 'browser': shared,
-              'limits': ['One model visitor, not a person.', 'The crowd model confirms its own claim; no independent judge in this loop.',
+              'sponsor_model_evidence': spend['model'] in returned and set(returned) <= {spend['model'], *([judge.model] if judge else [])}
+                                        and spend['calls_without_usage'] < spend['model_calls'],
+              'judge_model': judge.model if judge else None, 'spend': spend, 'visitor': row, 'browser': shared,
+              'limits': ['One model visitor, not a person.',
+                         f'A separate judge model, {judge.model}, checked the completion claim.' if judge else
+                         'The crowd model confirms its own claim; no independent judge in this visit.',
                          'Listed-rate estimate, not a provider invoice.']}
     (p / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
     return result
@@ -126,11 +132,12 @@ def _evidence(result):
             'error_hit': hit and {'label': hit.get('label'), 'what_happened': hit.get('what_happened'), 'screenshot': hit.get('screenshot')},
             'last_words': next((s.get('wish') or s.get('say') for s in reversed(v.get('steps', [])) if s.get('wish') or s.get('say')), None),
             'spend': result.get('spend') and {k: result['spend'][k] for k in ('model_calls', 'prompt_tokens', 'completion_tokens', 'listed_rate_estimate_usd', 'provider_invoice_usd')},
-            'subscription_calls': result.get('subscription_calls')}
+            'subscription_calls': result.get('subscription_calls'), 'judge_model': result.get('judge_model')}
 
 
-def loop(repo, ref, site_dir, goal, patch, output, visit, live_url=None):
-    """Run the whole loop once. `visit(url, goal, output)` returns a visitor result; every other step makes no model call."""
+def loop(repo, ref, site_dir, goal, patch, output, visit, live_url=None, visit_after=None):
+    """Run the whole loop once. `visit(url, goal, output)` returns a visitor result; every other step makes no model call.
+    `visit_after`, when given, replaces `visit` for the repaired tree only, e.g. a visitor whose claim a separate judge checks."""
     out = Path(output); out.mkdir(parents=True, exist_ok=False)
     before, after = out / 'app-before', out / 'app-after'
     receipt = {'schema': SCHEMA, 'repo': repo, 'goal': goal, 'site_dir': site_dir, 'host': 'a plain static host on loopback (no rewrites, no clean URLs)',
@@ -159,7 +166,7 @@ def loop(repo, ref, site_dir, goal, patch, output, visit, live_url=None):
     with serve(after / site_dir) as url:
         receipt['check_after'] = run_check(test, url, out / 'check-after.log')
         write()
-        receipt['visit_after'] = _evidence(visit(url, goal, out / 'visit-after'))
+        receipt['visit_after'] = _evidence((visit_after or visit)(url, goal, out / 'visit-after'))
     if live_url:   # read-only GETs against the deployed original, for comparison only
         receipt['check_live_original'] = {'url': live_url, **run_check(test, live_url, out / 'check-live.log')}
     receipt['repaired'] = receipt['check_before']['red_reason'] == 'error_page' and receipt['check_after']['exit'] == 0 and receipt['visit_after']['outcome'] == 'got_there'
@@ -194,8 +201,9 @@ def _step_line(s):
 def provenance(r):
     """One plain line: which model answered, how many calls, tokens and listed-rate cost. Only what the receipt holds."""
     sides = [r[k] for k in ('visit_before', 'visit_after') if r.get(k)]
-    models = sorted({m for v in sides for m in (v['model'] if isinstance(v['model'], list) else [v['model']]) if m})
-    line = 'Visitor model: ' + (', '.join(models) or 'unknown') + '.'
+    judges = sorted({v['judge_model'] for v in sides if v.get('judge_model')})
+    models = sorted({m for v in sides for m in (v['model'] if isinstance(v['model'], list) else [v['model']]) if m and m not in judges})
+    line = 'Visitor model: ' + (', '.join(models) or 'unknown') + '.' + (f" Separate judge model: {', '.join(judges)}." if judges else '')
     spends = [v['spend'] for v in sides if v.get('spend')]
     if spends:
         line += (f" {sum(s['model_calls'] for s in spends)} calls, {sum(s['prompt_tokens'] for s in spends):,} prompt and "
@@ -261,13 +269,21 @@ def recheck(output):
         return _recheck(r, out, trees, test)
 
 
+class RecheckMismatch(ValueError):
+    """The rerun check did not reproduce the recorded red before and green after."""
+
+
 def _recheck(r, out, trees, test):
+    recorded = {'before': r['check_before']['exit'], 'after': r['check_after']['exit']}
+    if recorded['before'] == 0 or recorded['after'] != 0:
+        raise RecheckMismatch(f'The receipt does not record red before and green after: {recorded}.')
     codes = {}
     for side in ('before', 'after'):
         tree = trees / f'app-{side}'
         if git(tree, 'rev-parse', 'HEAD') != r[f'{side}_sha']: raise ValueError(f'app-{side} is not at the recorded commit.')
         if git(tree, 'status', '--porcelain'): raise ValueError(f'app-{side} has edits on top of the recorded commit.')
         with serve(tree / r['site_dir']) as url: codes[side] = run_check(test, url, out / f'recheck-{side}.log')['exit']
+    if codes != recorded: raise RecheckMismatch(f'Rerun codes {codes} differ from the recorded {recorded}.')
     return codes
 
 
@@ -295,15 +311,25 @@ if __name__ == '__main__':
     r.add_argument('--goal', required=True); r.add_argument('--patch', required=True); r.add_argument('--output', required=True)
     r.add_argument('--visitor', choices=sorted(VISITORS), required=True); r.add_argument('--max-steps', type=int, default=4)
     r.add_argument('--run-cap-usd', type=float, default=0.05); r.add_argument('--live-url')
+    r.add_argument('--judge-after', action='store_true', help=f'a separate {hosted_cost.JUDGE_MODEL} judge checks the repaired visit (paid, nemotron only)')
     c = sub.add_parser('recheck'); c.add_argument('output')
     h = sub.add_parser('report'); h.add_argument('output')
     x = a.parse_args()
-    if x.cmd == 'recheck': print(json.dumps(recheck(x.output)))
+    if x.cmd == 'recheck':
+        try: print(json.dumps(recheck(x.output)))
+        except RecheckMismatch as e: sys.exit(f'recheck failed: {e}')
     elif x.cmd == 'report': print(report(x.output))
     else:
         if x.visitor == 'nemotron':
             if os.environ.get('CONFIRM_SPONSOR_SPEND') != 'RUN': a.error('Set CONFIRM_SPONSOR_SPEND=RUN to authorize the bounded Token Factory calls.')
             visit = functools.partial(nemotron_visit, max_steps=x.max_steps, run_cap_usd=x.run_cap_usd)
-        else: visit = functools.partial(codex_visit, max_steps=x.max_steps)
-        res = loop(x.repo, x.ref, x.site_dir, x.goal, x.patch, x.output, visit, x.live_url)
+        else:
+            if x.judge_after: a.error('--judge-after needs --visitor nemotron.')
+            visit = functools.partial(codex_visit, max_steps=x.max_steps)
+        visit_after = None
+        if x.judge_after:
+            os.environ[hosted_cost.JUDGE_MODEL_ENV] = hosted_cost.JUDGE_MODEL
+            visit_after = functools.partial(nemotron_visit, max_steps=x.max_steps, run_cap_usd=x.run_cap_usd,
+                                            judge=app_swarm.default_judge_for(app_swarm.CAST[0]))
+        res = loop(x.repo, x.ref, x.site_dir, x.goal, x.patch, x.output, visit, x.live_url, visit_after)
         print(json.dumps({k: res.get(k) for k in ('repaired', 'before_sha', 'after_sha', 'check_before', 'check_after', 'stopped')}))

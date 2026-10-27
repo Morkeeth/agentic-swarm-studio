@@ -151,3 +151,96 @@ def test_a_reply_from_another_model_is_not_sponsor_evidence(tmp_path, monkeypatc
     r = repair_loop.loop(str(repo), sha, 'web', 'Find out how settlements are checked', patch, tmp_path / 'out',
                          lambda url, goal, out: repair_loop.nemotron_visit(url, goal, out, max_steps=3))
     assert r['visit_before']['sponsor_model_evidence'] is False and r.get('repaired') is False
+
+
+def test_recheck_fails_when_the_rerun_does_not_match_the_receipt(tmp_path, monkeypatch):
+    repo, sha, patch = app_repo(tmp_path)
+    repair_loop.loop(str(repo), sha, 'web', 'Find out how settlements are checked', patch, tmp_path / 'out', scripted_visit)
+    real = repair_loop.run_check
+    monkeypatch.setattr(repair_loop, 'run_check', lambda test, url, log: {**real(test, url, log), 'exit': 0})   # a check that never goes red
+    with pytest.raises(repair_loop.RecheckMismatch, match='differ from the recorded'): repair_loop.recheck(tmp_path / 'out')
+
+
+def test_recheck_refuses_a_receipt_without_red_before_and_green_after(tmp_path):
+    repo, sha, patch = app_repo(tmp_path)
+    repair_loop.loop(str(repo), sha, 'web', 'Find out how settlements are checked', patch, tmp_path / 'out', scripted_visit)
+    receipt = tmp_path / 'out' / 'receipt.json'; r = json.loads(receipt.read_text())
+    r['check_before']['exit'] = 0; receipt.write_text(json.dumps(r))
+    with pytest.raises(repair_loop.RecheckMismatch, match='does not record red before'): repair_loop.recheck(tmp_path / 'out')
+
+
+def test_recheck_cli_exits_nonzero_on_mismatch(tmp_path):
+    import sys
+    repo, sha, patch = app_repo(tmp_path)
+    repair_loop.loop(str(repo), sha, 'web', 'Find out how settlements are checked', patch, tmp_path / 'out', scripted_visit)
+    receipt = tmp_path / 'out' / 'receipt.json'; r = json.loads(receipt.read_text())
+    r['check_after']['exit'] = 1; receipt.write_text(json.dumps(r))
+    run = subprocess.run([sys.executable, '-m', 'sim.repair_loop', 'recheck', str(tmp_path / 'out')], capture_output=True, text=True,
+                         cwd=Path(repair_loop.__file__).resolve().parents[1])
+    assert run.returncode != 0 and 'recheck failed' in run.stderr
+
+
+def test_a_separate_judge_checks_only_the_repaired_visit(tmp_path, monkeypatch):
+    """Dry run: Nano visitor and Super VL judge are both scripted. No provider call is made."""
+    from sim import hosted_cost
+    prior = tmp_path / 'prior.json'; prior.write_text(json.dumps({'runs': []}))
+    monkeypatch.setattr(hosted_cost, 'PRIOR', prior); monkeypatch.setattr(hosted_cost, 'RECORD', tmp_path / 'cost.json')
+    monkeypatch.setenv('TOKEN_FACTORY_API_KEY', 'test-value-never-sent'); monkeypatch.setenv(hosted_cost.JUDGE_MODEL_ENV, hosted_cost.JUDGE_MODEL)
+    usage = {'prompt_tokens': 900, 'completion_tokens': 40}
+    class Nano(Scripted):
+        model = hosted_cost.MODEL
+        def chat(self, messages, **kw):
+            reply = super().chat(messages); reply.model = self.model; reply.usage = usage; return reply
+    class Judge(Scripted):
+        model = hosted_cost.JUDGE_MODEL
+        seen = []
+        def chat(self, messages, **kw):
+            Judge.seen.append(messages[0]['content'][:30])
+            screen = messages[-1]['content']   # a judge that reads images gets text plus a JPEG of the screen
+            if isinstance(screen, list):
+                assert any(x.get('type') == 'image_url' for x in screen)
+                messages = messages[:-1] + [{'role': 'user', 'content': next(x['text'] for x in screen if x.get('type') == 'text')}]
+            reply = super().chat(messages); reply.model = self.model; reply.usage = usage; return reply
+    monkeypatch.setattr(app_swarm, 'default_client_for', lambda person: Nano())
+    repo, sha, patch = app_repo(tmp_path)
+    r = repair_loop.loop(str(repo), sha, 'web', 'Find out how settlements are checked', patch, tmp_path / 'out',
+                         lambda url, goal, out: repair_loop.nemotron_visit(url, goal, out, max_steps=3),
+                         visit_after=lambda url, goal, out: repair_loop.nemotron_visit(url, goal, out, max_steps=3, judge=Judge()))
+    assert Judge.seen and all(s.startswith('You check whether') for s in Judge.seen)
+    assert r['visit_before']['judge_model'] is None and r['visit_after']['judge_model'] == hosted_cost.JUDGE_MODEL
+    assert r['repaired'] is True and r['sponsor_model_evidence'] is True
+    assert sorted(r['visit_after']['model']) == sorted([hosted_cost.MODEL, hosted_cost.JUDGE_MODEL])
+    after = json.loads((tmp_path / 'out' / 'visit-after' / 'result.json').read_text())
+    assert any('separate judge model' in x for x in after['limits'])
+    assert 'Separate judge model: ' + hosted_cost.JUDGE_MODEL in (tmp_path / 'out' / 'REPAIR.md').read_text()
+
+
+def test_a_judge_that_says_no_keeps_the_repair_unproven(tmp_path, monkeypatch):
+    from sim import hosted_cost
+    prior = tmp_path / 'prior.json'; prior.write_text(json.dumps({'runs': []}))
+    monkeypatch.setattr(hosted_cost, 'PRIOR', prior); monkeypatch.setattr(hosted_cost, 'RECORD', tmp_path / 'cost.json')
+    monkeypatch.setenv('TOKEN_FACTORY_API_KEY', 'test-value-never-sent'); monkeypatch.setenv(hosted_cost.JUDGE_MODEL_ENV, hosted_cost.JUDGE_MODEL)
+    usage = {'prompt_tokens': 900, 'completion_tokens': 40}
+    class Nano(Scripted):
+        model = hosted_cost.MODEL
+        def chat(self, messages, **kw):
+            reply = super().chat(messages); reply.model = self.model; reply.usage = usage; return reply
+    class Sceptic(Nano):
+        model = hosted_cost.JUDGE_MODEL
+        def chat(self, messages, **kw):
+            return SimpleNamespace(text=json.dumps({'done': False, 'evidence': '', 'why': 'Not shown.'}), model=self.model, usage=usage)
+    monkeypatch.setattr(app_swarm, 'default_client_for', lambda person: Nano())
+    repo, sha, patch = app_repo(tmp_path)
+    r = repair_loop.loop(str(repo), sha, 'web', 'Find out how settlements are checked', patch, tmp_path / 'out',
+                         lambda url, goal, out: repair_loop.nemotron_visit(url, goal, out, max_steps=3),
+                         visit_after=lambda url, goal, out: repair_loop.nemotron_visit(url, goal, out, max_steps=3, judge=Sceptic()))
+    assert r['check_after']['exit'] == 0 and r['visit_after']['outcome'] != 'got_there' and r['repaired'] is False
+
+
+def test_a_judge_without_the_operator_setting_is_refused(tmp_path, monkeypatch):
+    from sim import hosted_cost
+    monkeypatch.delenv(hosted_cost.JUDGE_MODEL_ENV, raising=False)
+    judge = SimpleNamespace(model=hosted_cost.JUDGE_MODEL)
+    with pytest.raises(ValueError, match=hosted_cost.JUDGE_MODEL_ENV):
+        repair_loop.nemotron_visit('http://127.0.0.1:9/', 'Find out how settlements are checked', tmp_path / 'v', judge=judge)
+    assert not (tmp_path / 'v').exists()

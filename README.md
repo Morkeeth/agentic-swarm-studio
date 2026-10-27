@@ -40,7 +40,7 @@ After installing the dependencies and Chromium above, run from the repository ro
 .venv-app/bin/python -m sim.repair_loop recheck examples/overturn
 ```
 
-This fetches the original Overturn commit from GitHub, rebuilds the exact fixed commit from the bundled patch, serves both locally and reruns the same Playwright check. It makes no model call and needs no provider key. Expected output includes `"before": 1` and `"after": 0`. Here, 1 is the original check's expected failure; 0 is the patched check's pass. Verify those two reported codes against the retained receipt; the command prints them and does not itself assert that they match. It writes `recheck-before.log` and `recheck-after.log` beside that receipt.
+This fetches the original Overturn commit from GitHub, rebuilds the exact fixed commit from the bundled patch, serves both locally and reruns the same Playwright check. It makes no model call and needs no provider key. Expected output includes `"before": 1` and `"after": 0`. Here, 1 is the original check's expected failure; 0 is the patched check's pass. The command compares both codes with the retained receipt and exits non-zero, printing `recheck failed`, if either differs or the receipt does not record red before and green after. It writes `recheck-before.log` and `recheck-after.log` beside that receipt.
 
 The second visitor's goal completion is retained evidence, not rerun by `recheck`. A navigation check passing alone does not establish task completion. See [the repair loop guide](docs/repair-loop.md) for the paid, explicitly enabled new-run command and its limits.
 

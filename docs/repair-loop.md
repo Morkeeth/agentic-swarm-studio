@@ -12,7 +12,7 @@ Customer: a developer about to ship a change to a web app they own. They name on
   --output ../repair-overturn
 ```
 
-`--visitor nemotron` uses NVIDIA Nemotron Nano through Nebius Token Factory and needs `TOKEN_FACTORY_API_KEY` plus `CONFIRM_SPONSOR_SPEND=RUN`. Each of the two visits is reserved against the local spend record and stops at `--run-cap-usd` (default 0.05). `--visitor codex` uses a signed-in Codex CLI instead and is labelled as not sponsor evidence.
+`--visitor nemotron` uses NVIDIA Nemotron Nano through Nebius Token Factory and needs `TOKEN_FACTORY_API_KEY` plus `CONFIRM_SPONSOR_SPEND=RUN`. Each of the two visits is reserved against the local spend record and stops at `--run-cap-usd` (default 0.05). `--visitor codex` uses a signed-in Codex CLI instead and is labelled as not sponsor evidence. With `--visitor nemotron`, `--judge-after` adds a separate `nvidia/Nemotron-3.5-Super-VL` judge that checks the completion claim on the repaired visit only; it is an extra paid call per claim. The recorded Overturn pair predates this option and has no separate judge.
 
 The output folder holds:
 
@@ -23,7 +23,7 @@ The output folder holds:
 
 ## Recheck the bundled case without a key
 
-Install the dependencies and Chromium using [the root setup guide](../README.md#run-the-product-locally-without-a-key), then run `.venv-app/bin/python -m sim.repair_loop recheck examples/overturn` from the repository root. This fetches the pinned public source and reruns only the returned navigation check. It does not call a model or recreate the two recorded visits. Expect the original check to fail (`before: 1`) and the fixed check to pass (`after: 0`). The command writes new `recheck-*.log` files and leaves the original recorded checks intact.
+Install the dependencies and Chromium using [the root setup guide](../README.md#run-the-product-locally-without-a-key), then run `.venv-app/bin/python -m sim.repair_loop recheck examples/overturn` from the repository root. This fetches the pinned public source and reruns only the returned navigation check. It does not call a model or recreate the two recorded visits. Expect the original check to fail (`before: 1`) and the fixed check to pass (`after: 0`). If either code differs from the retained receipt, the command exits non-zero. The command writes new `recheck-*.log` files and leaves the original recorded checks intact.
 
 ## What counts as repaired
 
