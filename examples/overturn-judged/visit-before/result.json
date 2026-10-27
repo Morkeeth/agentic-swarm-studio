@@ -1,0 +1,343 @@
+{
+  "schema": "nemotron-visitor/1",
+  "provider": "Nebius Token Factory",
+  "model_requested": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+  "models_returned": [
+    "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B"
+  ],
+  "sponsor_model_evidence": true,
+  "judge_model": null,
+  "spend": {
+    "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "models": [
+      "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B"
+    ],
+    "provider": "Nebius Token Factory",
+    "model_calls": 8,
+    "max_calls": 12,
+    "run_cap_usd": 0.05,
+    "calls_without_usage": 0,
+    "prompt_tokens": 7962,
+    "completion_tokens": 260,
+    "listed_rate_estimate_usd": 0.00054012,
+    "held_reservation_usd": 0.0,
+    "price_source": "https://nebius.com/services/token-factory/models/nvidia-nemotron-models-inference",
+    "provider_invoice_usd": null,
+    "calls": [
+      {
+        "call": "t1-nemotron-nano-01-look",
+        "status": "usage_accounted",
+        "usage": {
+          "prompt_tokens": 2152,
+          "completion_tokens": 26
+        },
+        "accounted_usd": 0.00013536,
+        "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "ms": 779
+      },
+      {
+        "call": "t1-nemotron-nano-01-confirm",
+        "status": "usage_accounted",
+        "usage": {
+          "prompt_tokens": 1360,
+          "completion_tokens": 51
+        },
+        "accounted_usd": 9.384e-05,
+        "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "ms": 872
+      },
+      {
+        "call": "t1-nemotron-nano-01",
+        "status": "usage_accounted",
+        "usage": {
+          "prompt_tokens": 1520,
+          "completion_tokens": 35
+        },
+        "accounted_usd": 9.96e-05,
+        "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "ms": 892
+      },
+      {
+        "call": "t1-nemotron-nano-02-look",
+        "status": "usage_accounted",
+        "usage": {
+          "prompt_tokens": 254,
+          "completion_tokens": 14
+        },
+        "accounted_usd": 1.86e-05,
+        "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "ms": 686
+      },
+      {
+        "call": "t1-nemotron-nano-02",
+        "status": "usage_accounted",
+        "usage": {
+          "prompt_tokens": 452,
+          "completion_tokens": 40
+        },
+        "accounted_usd": 3.672e-05,
+        "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "ms": 891
+      },
+      {
+        "call": "t1-nemotron-nano-03",
+        "status": "usage_accounted",
+        "usage": {
+          "prompt_tokens": 1494,
+          "completion_tokens": 43
+        },
+        "accounted_usd": 9.996e-05,
+        "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "ms": 732
+      },
+      {
+        "call": "t1-nemotron-nano-04-look",
+        "status": "usage_accounted",
+        "usage": {
+          "prompt_tokens": 254,
+          "completion_tokens": 14
+        },
+        "accounted_usd": 1.86e-05,
+        "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "ms": 622
+      },
+      {
+        "call": "t1-nemotron-nano-04",
+        "status": "usage_accounted",
+        "usage": {
+          "prompt_tokens": 476,
+          "completion_tokens": 37
+        },
+        "accounted_usd": 3.744e-05,
+        "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "ms": 708
+      }
+    ]
+  },
+  "visitor": {
+    "id": "nemotron-nano",
+    "name": "First-time visitor",
+    "goal": "Open the About page and read why Overturn exists",
+    "colour": "#1f6f5c",
+    "viewport": [
+      1440,
+      900
+    ],
+    "phone": false,
+    "max_steps": 4,
+    "status": "complete",
+    "outcome": "stuck",
+    "steps": [
+      {
+        "order": 1,
+        "url": "http://127.0.0.1:57408/",
+        "title": "Overturn: an escrow that cannot pay out on a goal that didn't happen",
+        "http_status": 404,
+        "screenshot": "v-nemotron-nano-t1-01.png",
+        "page_text": "OVERTURN MARKET ABOUT STORY REPO TXODDS X SOLANA WORLD CUP \u00b7 PREDICTION MARKETS & SETTLEMENT An escrow that cannot pay out on a goal that didn't happen. On 14 July, for 26 seconds, the live feed said Spain had scored a third goal against France. VAR erased it. Any market that settled in those 26 seconds paid the wrong side, and the chain does not give money back. Overturn is a prop-bet escrow that refuses to settle",
+        "choices_seen": 7,
+        "offsite_hidden": 4,
+        "needs_account": [],
+        "start_ms": 1494,
+        "status": "error_page",
+        "action": "click",
+        "say": "I need to understand why Overturn exists",
+        "page_evidence_text": "A proof shows they published it, not that it happened TxLINE anchors every score to Solana as a Merkle proof, so anyone can verify what the feed said and when. That is necessary and nowhere near sufficient. A proof of the 0-3 scoreline is a perfectly valid proof: it proves TxODDS published 0-3. It does not prove Spain scored. Verifying the cryptography and settling on the result are two different jobs, and only one of them is hard. 26s the phantom stood Published 20:22:29, withdrawn 20:22:55. Long enough to settle a market. 41:45 how early the stream paid A market following the feed released the pot 41 minutes 45 seconds before the whistle. 0.10 SOL settled on mainnet Real money, into escrow and out the correct side, decided by TxLINE's production oracle. Three guards, and none of them are cryptography Settling is permissionless: anyone may call it, because the caller has no discretion. Every input is checked against state frozen when the market opened, before anyone knew the answer. All three run before the oracle is asked, so the escrow refuses to verify a proof it has no business verifying. Guard 1 / 3 Fixture binding A real, valid, unforged proof from a different match is still a real proof. It settles nothing here. FixtureMismatch Guard 2 / 3 Finality An honest half-time proof honestly proves the half-time score, and would settle a full-match market early. ProofNotFinal Guard 3 / 3 Predicate binding Without it the settler picks the question, and picks the one they win. PredicateMismatch The whole product is six commands There is no admin key and nobody to appeal to. A market is opened, matched, settled from a proof, and collected. This is a real run against the live program, copied from the terminal. npm run market:attack \u00b7 mainnet-beta \u00b7 real money on the table proof : England v Argentina, the OTHER semi-final (fixture 18241006) shape : same stat key, same period, batch runs past the whistle expect : REJECTED by guard 1. The proof is real. It is the wrong match. OK REJECTED: GUARD 1: proof is for a different fixture The money did not move. Nothing was verified: the escrow refused before it ever asked the oracle. npm run market:settle \u2192 npm run market:claim proof : France v Spain final batch, period 100 (fixture 18237038) predicate : \"Spain > 2\", the question the prop was opened with OK SETTLED. \"Spain total goals > 2\" = FALSE winner: TAKER (NO) OK paid. +0.1000 SOL Spain scored 2. The prop was false. The NO side was paid, on a Merkle proof, by a program with no admin key and nobody to appeal to. Bring your own key This is not a hosted service you have to trust. The program has no admin key and nobody to appeal to, including us. Everything the site does you can do from a terminal against the same program, with your own TxLINE subscription and your own wallet. Point RPC_URL at a cluster and the identical flow runs there: there is no special mainnet path, which is the only reason we were willing to put real money through it. your key \u00b7 your wallet \u00b7 your machine # 1. your TxLINE token. one on-chain subscribe, free tier, four weeks node subscribe.mjs # 2. your keys. the CLI reads these; the site never sees them WC_API_TOKEN=... # from /api/token/activate WC_JWT=... # from /auth/guest/start, no credentials needed # 3. your market, on whichever chain you like npm run market:fixtures RPC_URL=https://api.mainnet-beta.solana.com \\ ORACLE=9ExbZjAapQww1vfcisDmrngPinHTEfpjYRWMunJgcKaA \\ npm run market:open -- --fixture 18257739 --stat 1 --threshold 1 point an agent at it \u00b7 npm run market:watch # every command is non-interactive, prints an e",
+        "landmarks": [
+          "Overturn: an escrow that cannot pay out on a goal that didn't happen",
+          "A PROOF SHOWS THEY PUBLISHED IT, NOT THAT IT HAPPENED",
+          "THREE GUARDS, AND NONE OF THEM ARE CRYPTOGRAPHY",
+          "THE WHOLE PRODUCT IS SIX COMMANDS",
+          "BRING YOUR OWN KEY"
+        ],
+        "look": {
+          "found": true,
+          "quote": "A proof shows they published it, not that it happened",
+          "on_page": true,
+          "model_ms": 779,
+          "usage": {
+            "prompt_tokens": 2152,
+            "completion_tokens": 26
+          }
+        },
+        "claim": {
+          "quote": "A proof shows they published it, not that it happened",
+          "confirmed": true,
+          "why": "The screen shows the task was completed as the About page content is displayed and the reason for Overturn is read."
+        },
+        "claim_evidence": "READ WHAT HAPPENED",
+        "claim_state": {
+          "state": "screen_confirmed",
+          "missing": [
+            "content_evidence"
+          ],
+          "reason": "The quoted answer is absent from page content; navigation alone is insufficient."
+        },
+        "trail": [
+          {
+            "url": "http://127.0.0.1:57408/",
+            "action": "look"
+          }
+        ],
+        "confirm_call": {
+          "model_ms": 872,
+          "usage": {
+            "prompt_tokens": 1360,
+            "completion_tokens": 51
+          },
+          "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B"
+        },
+        "model_ms": 892,
+        "usage": {
+          "prompt_tokens": 1520,
+          "completion_tokens": 35
+        },
+        "model_reply": "{\"say\": \"I need to understand why Overturn exists\", \"action\": \"click\", \"target\": 7, \"wish\": \"clearer purpose\"}",
+        "target_text": "WHY THIS EXISTS",
+        "target_locator": null,
+        "hit": {
+          "kind": "error_page",
+          "label": "WHY THIS EXISTS",
+          "url": "http://127.0.0.1:57408/about",
+          "screenshot": "v-nemotron-nano-t1-51.png",
+          "page_text": "Error response Error code: 404 Message: File not found. Error code explanation: 404 - Nothing matches the given URI.",
+          "what_happened": "Clicked 'WHY THIS EXISTS' and the page answered with error 404."
+        },
+        "elapsed_ms": 3986
+      },
+      {
+        "order": 2,
+        "url": "http://127.0.0.1:57408/about",
+        "title": "Error response",
+        "http_status": 404,
+        "screenshot": "v-nemotron-nano-t1-02.png",
+        "page_text": "Error response Error code: 404 Message: File not found. Error code explanation: 404 - Nothing matches the given URI.",
+        "choices_seen": 0,
+        "offsite_hidden": 0,
+        "needs_account": [],
+        "start_ms": 5481,
+        "status": "ok",
+        "action": "back",
+        "say": "I need to go back to the About page",
+        "page_evidence_text": "Error response Error code: 404 Message: File not found. Error code explanation: 404 - Nothing matches the given URI.",
+        "landmarks": [
+          "Error response",
+          "Error response"
+        ],
+        "look": {
+          "found": false,
+          "quote": "",
+          "on_page": false,
+          "model_ms": 686,
+          "usage": {
+            "prompt_tokens": 254,
+            "completion_tokens": 14
+          }
+        },
+        "model_ms": 891,
+        "usage": {
+          "prompt_tokens": 452,
+          "completion_tokens": 40
+        },
+        "model_reply": "{\"say\": \"I need to go back to the About page\", \"action\": \"back\", \"target\": 1, \"wish\": \"fix the link to the About page\"}",
+        "elapsed_ms": 2309
+      },
+      {
+        "order": 3,
+        "url": "http://127.0.0.1:57408/",
+        "title": "Overturn: an escrow that cannot pay out on a goal that didn't happen",
+        "http_status": 404,
+        "screenshot": "v-nemotron-nano-t1-03.png",
+        "page_text": "OVERTURN MARKET ABOUT STORY REPO TXODDS X SOLANA WORLD CUP \u00b7 PREDICTION MARKETS & SETTLEMENT An escrow that cannot pay out on a goal that didn't happen. On 14 July, for 26 seconds, the live feed said Spain had scored a third goal against France. VAR erased it. Any market that settled in those 26 seconds paid the wrong side, and the chain does not give money back. Overturn is a prop-bet escrow that refuses to settle",
+        "choices_seen": 6,
+        "offsite_hidden": 4,
+        "needs_account": [],
+        "start_ms": 7790,
+        "status": "error_page",
+        "action": "click",
+        "say": "I need to understand what Overturn is about",
+        "page_evidence_text": "A proof shows they published it, not that it happened TxLINE anchors every score to Solana as a Merkle proof, so anyone can verify what the feed said and when. That is necessary and nowhere near sufficient. A proof of the 0-3 scoreline is a perfectly valid proof: it proves TxODDS published 0-3. It does not prove Spain scored. Verifying the cryptography and settling on the result are two different jobs, and only one of them is hard. 26s the phantom stood Published 20:22:29, withdrawn 20:22:55. Long enough to settle a market. 41:45 how early the stream paid A market following the feed released the pot 41 minutes 45 seconds before the whistle. 0.10 SOL settled on mainnet Real money, into escrow and out the correct side, decided by TxLINE's production oracle. Three guards, and none of them are cryptography Settling is permissionless: anyone may call it, because the caller has no discretion. Every input is checked against state frozen when the market opened, before anyone knew the answer. All three run before the oracle is asked, so the escrow refuses to verify a proof it has no business verifying. Guard 1 / 3 Fixture binding A real, valid, unforged proof from a different match is still a real proof. It settles nothing here. FixtureMismatch Guard 2 / 3 Finality An honest half-time proof honestly proves the half-time score, and would settle a full-match market early. ProofNotFinal Guard 3 / 3 Predicate binding Without it the settler picks the question, and picks the one they win. PredicateMismatch The whole product is six commands There is no admin key and nobody to appeal to. A market is opened, matched, settled from a proof, and collected. This is a real run against the live program, copied from the terminal. npm run market:attack \u00b7 mainnet-beta \u00b7 real money on the table proof : England v Argentina, the OTHER semi-final (fixture 18241006) shape : same stat key, same period, batch runs past the whistle expect : REJECTED by guard 1. The proof is real. It is the wrong match. OK REJECTED: GUARD 1: proof is for a different fixture The money did not move. Nothing was verified: the escrow refused before it ever asked the oracle. npm run market:settle \u2192 npm run market:claim proof : France v Spain final batch, period 100 (fixture 18237038) predicate : \"Spain > 2\", the question the prop was opened with OK SETTLED. \"Spain total goals > 2\" = FALSE winner: TAKER (NO) OK paid. +0.1000 SOL Spain scored 2. The prop was false. The NO side was paid, on a Merkle proof, by a program with no admin key and nobody to appeal to. Bring your own key This is not a hosted service you have to trust. The program has no admin key and nobody to appeal to, including us. Everything the site does you can do from a terminal against the same program, with your own TxLINE subscription and your own wallet. Point RPC_URL at a cluster and the identical flow runs there: there is no special mainnet path, which is the only reason we were willing to put real money through it. your key \u00b7 your wallet \u00b7 your machine # 1. your TxLINE token. one on-chain subscribe, free tier, four weeks node subscribe.mjs # 2. your keys. the CLI reads these; the site never sees them WC_API_TOKEN=... # from /api/token/activate WC_JWT=... # from /auth/guest/start, no credentials needed # 3. your market, on whichever chain you like npm run market:fixtures RPC_URL=https://api.mainnet-beta.solana.com \\ ORACLE=9ExbZjAapQww1vfcisDmrngPinHTEfpjYRWMunJgcKaA \\ npm run market:open -- --fixture 18257739 --stat 1 --threshold 1 point an agent at it \u00b7 npm run market:watch # every command is non-interactive, prints an e",
+        "landmarks": [
+          "Overturn: an escrow that cannot pay out on a goal that didn't happen",
+          "A PROOF SHOWS THEY PUBLISHED IT, NOT THAT IT HAPPENED",
+          "THREE GUARDS, AND NONE OF THEM ARE CRYPTOGRAPHY",
+          "THE WHOLE PRODUCT IS SIX COMMANDS",
+          "BRING YOUR OWN KEY"
+        ],
+        "model_ms": 732,
+        "usage": {
+          "prompt_tokens": 1494,
+          "completion_tokens": 43
+        },
+        "model_reply": "{\n  \"say\": \"I need to understand what Overturn is about\",\n  \"action\": \"click\",\n  \"target\": 2,\n  \"wish\": \"clear explanation of purpose\"\n}",
+        "target_text": "ABOUT",
+        "target_locator": null,
+        "hit": {
+          "kind": "error_page",
+          "label": "ABOUT",
+          "url": "http://127.0.0.1:57408/about",
+          "screenshot": "v-nemotron-nano-t1-53.png",
+          "page_text": "Error response Error code: 404 Message: File not found. Error code explanation: 404 - Nothing matches the given URI.",
+          "what_happened": "Clicked 'ABOUT' and the page answered with error 404."
+        },
+        "elapsed_ms": 1805
+      },
+      {
+        "order": 4,
+        "url": "http://127.0.0.1:57408/about",
+        "title": "Error response",
+        "http_status": 404,
+        "screenshot": "v-nemotron-nano-t1-04.png",
+        "page_text": "Error response Error code: 404 Message: File not found. Error code explanation: 404 - Nothing matches the given URI.",
+        "choices_seen": 0,
+        "offsite_hidden": 0,
+        "needs_account": [],
+        "start_ms": 9596,
+        "status": "stuck",
+        "action": "stuck",
+        "say": "404 error blocked the About page",
+        "page_evidence_text": "Error response Error code: 404 Message: File not found. Error code explanation: 404 - Nothing matches the given URI.",
+        "landmarks": [
+          "Error response",
+          "Error response"
+        ],
+        "look": {
+          "found": false,
+          "quote": "",
+          "on_page": false,
+          "model_ms": 622,
+          "usage": {
+            "prompt_tokens": 254,
+            "completion_tokens": 14
+          }
+        },
+        "model_ms": 708,
+        "usage": {
+          "prompt_tokens": 476,
+          "completion_tokens": 37
+        },
+        "model_reply": "{\"say\": \"404 error blocked the About page\", \"action\": \"stuck\", \"target\": \"\", \"wish\": \"fix 404 error\"}",
+        "wish": "fix 404 error",
+        "elapsed_ms": 1481
+      }
+    ],
+    "start_ms": 0,
+    "sceptic": false,
+    "blocked": [],
+    "claimed": true,
+    "screen_confirmed": true,
+    "confirmed": false,
+    "end_ms": 11078,
+    "time_to_goal_ms": null
+  },
+  "browser": {
+    "blocked": [],
+    "errors": [],
+    "read_posts": []
+  },
+  "limits": [
+    "One model visitor, not a person.",
+    "The crowd model confirms its own claim; no independent judge in this visit.",
+    "Listed-rate estimate, not a provider invoice."
+  ]
+}

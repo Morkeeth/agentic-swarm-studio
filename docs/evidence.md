@@ -27,6 +27,12 @@ The original check failed on an About 404 when served as plain files. The five-f
 
 The receipt contains 13 Nemotron Nano replies with model ID and usage: 16,317 prompt tokens and 617 completion tokens. The listed-rate estimate is USD 0.0011271, not a provider invoice. Rechecking the navigation path makes no new model call.
 
+## The same case with a separate judge (27 Oct 2026)
+
+[Judged receipt](../examples/overturn-judged/receipt.json), [report](../examples/overturn-judged/REPAIR.html), [before log](../examples/overturn-judged/check-before.log) and [after log](../examples/overturn-judged/check-after.log) record one fresh run of the same Overturn case with `--judge-after`. The original commit again failed the returned check on the About 404. The same five-file patch produced the same fixed commit, which passed. A new Nano visitor reached the About page, and its completion claim was checked by a separate `nvidia/Nemotron-3.5-Super-VL` judge, which agreed twice and quoted sentences that are on that screen.
+
+The receipt holds 13 Token Factory replies with model ID and usage: 11 from Nano and 2 from Super VL, 19,024 prompt and 637 completion tokens, USD 0.00268 at listed rates, not a provider invoice. `recheck` on this folder returns before 1 and after 0 with no model call. This is one judged pair on a plain static host, run from the command line; it is not a success rate and not the hosted service.
+
 ## Historical evidence kept separate
 
 The AirIQ, EduNova AI and Water Buddy before/after folders are historical examples, not three more instances of the new owned repair loop. The historical Water Buddy red/green proof used a hand-written link check. The studio also retains ten controlled command-line cases; they are not ten additional browser-tested apps.

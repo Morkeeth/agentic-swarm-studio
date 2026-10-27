@@ -1,0 +1,123 @@
+diff --git a/web/about.html b/web/about.html
+index a2b3e83..14d0087 100644
+--- a/web/about.html
++++ b/web/about.html
+@@ -101,9 +101,9 @@
+ <nav><div class="wrap">
+   <a class="mark" href="/">Over<s>turn</s></a>
+   <div class="navlinks">
+-    <a class="pill" href="/market">Market</a>
+-    <a class="pill here" href="/about">About</a>
+-    <a class="pill" href="/story">Story</a>
++    <a class="pill" href="/market.html">Market</a>
++    <a class="pill here" href="/about.html">About</a>
++    <a class="pill" href="/story.html">Story</a>
+     <a class="pill" href="https://github.com/Morkeeth/overturn">Repo</a>
+   </div>
+ </div></nav>
+diff --git a/web/index.html b/web/index.html
+index 0e5d81a..b9d047c 100644
+--- a/web/index.html
++++ b/web/index.html
+@@ -98,9 +98,9 @@
+ <nav><div class="wrap">
+   <a class="mark" href="/">Over<s>turn</s></a>
+   <div class="navlinks">
+-    <a class="pill" href="/market">Market</a>
+-    <a class="pill" href="/about">About</a>
+-    <a class="pill" href="/story">Story</a>
++    <a class="pill" href="/market.html">Market</a>
++    <a class="pill" href="/about.html">About</a>
++    <a class="pill" href="/story.html">Story</a>
+     <a class="pill" href="https://github.com/Morkeeth/overturn">Repo</a>
+   </div>
+ </div></nav>
+@@ -117,8 +117,8 @@
+   does not give money back. Overturn is a prop-bet escrow that refuses to settle on a result that is
+   still provisional, still under review, or has since been withdrawn.</p>
+   <div class="cta">
+-    <a class="pill solid" href="/market#demo">▶ Play a live market</a>
+-    <a class="pill" href="/story">Read what happened</a>
++    <a class="pill solid" href="/market.html#demo">▶ Play a live market</a>
++    <a class="pill" href="/story.html">Read what happened</a>
+   </div>
+ </div></header>
+ 
+@@ -204,7 +204,7 @@
+   by a program with no admin key and nobody to appeal to.</pre>
+   </div>
+   <div class="cta">
+-    <a class="pill solid" href="/market">Watch it on chain</a>
++    <a class="pill solid" href="/market.html">Watch it on chain</a>
+     <a class="pill" href="https://github.com/Morkeeth/overturn#or-drive-it-yourself-one-step-at-a-time">Run it yourself</a>
+   </div>
+ </div></section>
+@@ -245,7 +245,7 @@ npm run market:open -- --fixture 18257739 --stat 1 --threshold 1</pre>
+   Nobody decided that. The proof did.</pre>
+   </div>
+   <div class="cta">
+-    <a class="pill solid" href="/about">Why this exists</a>
++    <a class="pill solid" href="/about.html">Why this exists</a>
+     <a class="pill" href="https://github.com/Morkeeth/overturn">Read the code</a>
+   </div>
+ </div></section>
+diff --git a/web/market.html b/web/market.html
+index ec31d2f..13a6905 100644
+--- a/web/market.html
++++ b/web/market.html
+@@ -128,9 +128,9 @@
+ <nav><div class="wrap">
+   <a class="mark" href="/">Over<s>turn</s></a>
+   <div class="navlinks">
+-    <a class="pill here" href="/market">Market</a>
+-    <a class="pill" href="/about">About</a>
+-    <a class="pill" href="/story">Story</a>
++    <a class="pill here" href="/market.html">Market</a>
++    <a class="pill" href="/about.html">About</a>
++    <a class="pill" href="/story.html">Story</a>
+     <a class="pill" href="https://github.com/Morkeeth/overturn">Repo</a>
+     <span class="pill" id="asof">reading chain…</span>
+   </div>
+@@ -479,7 +479,7 @@ async function loadFeed() {
+           + `<span style="margin-left:16px;font-weight:700;color:${disagree ? 'var(--faint)' : 'var(--ink)'}">`
+           + (disagree ? `<s>${a}</s> → ${c}` : c) + '</span>';
+       }
+-      return `<a href="/story" style="cursor:default"><span class="what">${f.home} v ${f.away}
++      return `<a href="/story.html" style="cursor:default"><span class="what">${f.home} v ${f.away}
+         <span style="color:var(--dim)"> &nbsp;${when}</span></span><span>${right}</span></a>`;
+     }).join('') + '</div>';
+   } catch {
+diff --git a/web/story.html b/web/story.html
+index 708c659..96cefd1 100644
+--- a/web/story.html
++++ b/web/story.html
+@@ -175,9 +175,9 @@
+ <nav><div class="wrap">
+   <a class="mark" href="/">Over<s>turn</s></a>
+   <div class="navlinks">
+-    <a class="pill" href="/market">Market</a>
+-    <a class="pill" href="/about">About</a>
+-    <a class="pill here" href="/story">Story</a>
++    <a class="pill" href="/market.html">Market</a>
++    <a class="pill" href="/about.html">About</a>
++    <a class="pill here" href="/story.html">Story</a>
+     <a class="pill" href="https://github.com/Morkeeth/overturn">Repo</a>
+   </div>
+ </div></nav>
+diff --git a/web/story.template.html b/web/story.template.html
+index 4dc3e09..664a1b8 100644
+--- a/web/story.template.html
++++ b/web/story.template.html
+@@ -175,9 +175,9 @@
+ <nav><div class="wrap">
+   <a class="mark" href="/">Over<s>turn</s></a>
+   <div class="navlinks">
+-    <a class="pill" href="/market">Market</a>
+-    <a class="pill" href="/about">About</a>
+-    <a class="pill here" href="/story">Story</a>
++    <a class="pill" href="/market.html">Market</a>
++    <a class="pill" href="/about.html">About</a>
++    <a class="pill here" href="/story.html">Story</a>
+     <a class="pill" href="https://github.com/Morkeeth/overturn">Repo</a>
+   </div>
+ </div></nav>

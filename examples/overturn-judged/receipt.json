@@ -1,0 +1,88 @@
+{
+  "schema": "outside-repair-loop/1",
+  "repo": "https://github.com/Morkeeth/overturn.git",
+  "goal": "Open the About page and read why Overturn exists",
+  "site_dir": "web",
+  "host": "a plain static host on loopback (no rewrites, no clean URLs)",
+  "started_at": "2026-10-27T21:13:24.505735+00:00",
+  "repaired": true,
+  "before_sha": "bd6a868294bf61155917457eba7b384c9e0a5a76",
+  "visit_before": {
+    "schema": "nemotron-visitor/1",
+    "sponsor_model_evidence": true,
+    "model": [
+      "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B"
+    ],
+    "outcome": "stuck",
+    "confirmed": false,
+    "steps": 4,
+    "path": [
+      "WHY THIS EXISTS",
+      "ABOUT"
+    ],
+    "error_hit": {
+      "label": "WHY THIS EXISTS",
+      "what_happened": "Clicked 'WHY THIS EXISTS' and the page answered with error 404.",
+      "screenshot": "v-nemotron-nano-t1-51.png"
+    },
+    "last_words": "fix 404 error",
+    "spend": {
+      "model_calls": 8,
+      "prompt_tokens": 7962,
+      "completion_tokens": 260,
+      "listed_rate_estimate_usd": 0.00054012,
+      "provider_invoice_usd": null
+    },
+    "subscription_calls": null,
+    "judge_model": null
+  },
+  "check": {
+    "file": "test_returned_path.py",
+    "sha256": "9b3f3aa46eee9365043b49f53f6c2242b8cb4b6506d30417955aca2baea7c16f",
+    "generated_from": "visit-before/result.json",
+    "scope": "Replays the recorded clicks and fails on an error page. Navigation smoke, not task completion."
+  },
+  "check_before": {
+    "exit": 1,
+    "red_reason": "error_page",
+    "log": "check-before.log"
+  },
+  "patch": {
+    "file": "portable-menu-links.patch",
+    "sha256": "d6faa970b033e0df90c84b7db2be1163b7e832a099908131cfddbd02072dd2f6",
+    "diffstat": "web/about.html          |  6 +++---\n web/index.html          | 14 +++++++-------\n web/market.html         |  8 ++++----\n web/story.html          |  6 +++---\n web/story.template.html |  6 +++---\n 5 files changed, 20 insertions(+), 20 deletions(-)"
+  },
+  "after_sha": "dd55810c974757510203eeab8461a9bd5e666031",
+  "check_after": {
+    "exit": 0,
+    "red_reason": null,
+    "log": "check-after.log"
+  },
+  "visit_after": {
+    "schema": "nemotron-visitor/1",
+    "sponsor_model_evidence": true,
+    "model": [
+      "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+      "nvidia/Nemotron-3.5-Super-VL"
+    ],
+    "outcome": "got_there",
+    "confirmed": true,
+    "steps": 2,
+    "path": [
+      "ABOUT"
+    ],
+    "error_hit": null,
+    "last_words": "I need to understand why Overturn exists",
+    "spend": {
+      "model_calls": 5,
+      "prompt_tokens": 11062,
+      "completion_tokens": 377,
+      "listed_rate_estimate_usd": 0.00213984,
+      "provider_invoice_usd": null
+    },
+    "subscription_calls": null,
+    "judge_model": "nvidia/Nemotron-3.5-Super-VL"
+  },
+  "sponsor_model_evidence": true,
+  "finished_at": "2026-10-27T21:13:52.696195+00:00"
+}

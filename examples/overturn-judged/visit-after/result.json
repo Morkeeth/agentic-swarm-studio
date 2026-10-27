@@ -1,0 +1,260 @@
+{
+  "schema": "nemotron-visitor/1",
+  "provider": "Nebius Token Factory",
+  "model_requested": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+  "models_returned": [
+    "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "nvidia/Nemotron-3.5-Super-VL"
+  ],
+  "sponsor_model_evidence": true,
+  "judge_model": "nvidia/Nemotron-3.5-Super-VL",
+  "spend": {
+    "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "models": [
+      "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+      "nvidia/Nemotron-3.5-Super-VL"
+    ],
+    "provider": "Nebius Token Factory",
+    "model_calls": 5,
+    "max_calls": 12,
+    "run_cap_usd": 0.05,
+    "calls_without_usage": 0,
+    "prompt_tokens": 11062,
+    "completion_tokens": 377,
+    "listed_rate_estimate_usd": 0.00213984,
+    "held_reservation_usd": 0.0,
+    "price_source": "https://nebius.com/services/token-factory/models/nvidia-nemotron-models-inference",
+    "provider_invoice_usd": null,
+    "calls": [
+      {
+        "call": "t1-nemotron-nano-01-look",
+        "status": "usage_accounted",
+        "usage": {
+          "prompt_tokens": 2152,
+          "completion_tokens": 98
+        },
+        "accounted_usd": 0.00015264,
+        "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "ms": 1233
+      },
+      {
+        "call": "t1-nemotron-nano-01-judge",
+        "status": "usage_accounted",
+        "usage": {
+          "prompt_tokens": 2712,
+          "completion_tokens": 55
+        },
+        "accounted_usd": 0.0008631,
+        "model": "nvidia/Nemotron-3.5-Super-VL",
+        "ms": 2065
+      },
+      {
+        "call": "t1-nemotron-nano-01",
+        "status": "usage_accounted",
+        "usage": {
+          "prompt_tokens": 1527,
+          "completion_tokens": 46
+        },
+        "accounted_usd": 0.00010266,
+        "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "ms": 714
+      },
+      {
+        "call": "t1-nemotron-nano-02-look",
+        "status": "usage_accounted",
+        "usage": {
+          "prompt_tokens": 2022,
+          "completion_tokens": 83
+        },
+        "accounted_usd": 0.00014124,
+        "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "ms": 1128
+      },
+      {
+        "call": "t1-nemotron-nano-02-judge",
+        "status": "usage_accounted",
+        "usage": {
+          "prompt_tokens": 2649,
+          "completion_tokens": 95
+        },
+        "accounted_usd": 0.0008802,
+        "model": "nvidia/Nemotron-3.5-Super-VL",
+        "ms": 2508
+      }
+    ]
+  },
+  "visitor": {
+    "id": "nemotron-nano",
+    "name": "First-time visitor",
+    "goal": "Open the About page and read why Overturn exists",
+    "colour": "#1f6f5c",
+    "viewport": [
+      1440,
+      900
+    ],
+    "phone": false,
+    "max_steps": 4,
+    "status": "complete",
+    "outcome": "got_there",
+    "steps": [
+      {
+        "order": 1,
+        "url": "http://127.0.0.1:57449/",
+        "title": "Overturn: an escrow that cannot pay out on a goal that didn't happen",
+        "http_status": 200,
+        "screenshot": "v-nemotron-nano-t1-01.png",
+        "page_text": "OVERTURN MARKET ABOUT STORY REPO TXODDS X SOLANA WORLD CUP \u00b7 PREDICTION MARKETS & SETTLEMENT An escrow that cannot pay out on a goal that didn't happen. On 14 July, for 26 seconds, the live feed said Spain had scored a third goal against France. VAR erased it. Any market that settled in those 26 seconds paid the wrong side, and the chain does not give money back. Overturn is a prop-bet escrow that refuses to settle",
+        "choices_seen": 7,
+        "offsite_hidden": 4,
+        "needs_account": [],
+        "start_ms": 1137,
+        "status": "ok",
+        "action": "click",
+        "say": "I need to understand why Overturn exists",
+        "page_evidence_text": "A proof shows they published it, not that it happened TxLINE anchors every score to Solana as a Merkle proof, so anyone can verify what the feed said and when. That is necessary and nowhere near sufficient. A proof of the 0-3 scoreline is a perfectly valid proof: it proves TxODDS published 0-3. It does not prove Spain scored. Verifying the cryptography and settling on the result are two different jobs, and only one of them is hard. 26s the phantom stood Published 20:22:29, withdrawn 20:22:55. Long enough to settle a market. 41:45 how early the stream paid A market following the feed released the pot 41 minutes 45 seconds before the whistle. 0.10 SOL settled on mainnet Real money, into escrow and out the correct side, decided by TxLINE's production oracle. Three guards, and none of them are cryptography Settling is permissionless: anyone may call it, because the caller has no discretion. Every input is checked against state frozen when the market opened, before anyone knew the answer. All three run before the oracle is asked, so the escrow refuses to verify a proof it has no business verifying. Guard 1 / 3 Fixture binding A real, valid, unforged proof from a different match is still a real proof. It settles nothing here. FixtureMismatch Guard 2 / 3 Finality An honest half-time proof honestly proves the half-time score, and would settle a full-match market early. ProofNotFinal Guard 3 / 3 Predicate binding Without it the settler picks the question, and picks the one they win. PredicateMismatch The whole product is six commands There is no admin key and nobody to appeal to. A market is opened, matched, settled from a proof, and collected. This is a real run against the live program, copied from the terminal. npm run market:attack \u00b7 mainnet-beta \u00b7 real money on the table proof : England v Argentina, the OTHER semi-final (fixture 18241006) shape : same stat key, same period, batch runs past the whistle expect : REJECTED by guard 1. The proof is real. It is the wrong match. OK REJECTED: GUARD 1: proof is for a different fixture The money did not move. Nothing was verified: the escrow refused before it ever asked the oracle. npm run market:settle \u2192 npm run market:claim proof : France v Spain final batch, period 100 (fixture 18237038) predicate : \"Spain > 2\", the question the prop was opened with OK SETTLED. \"Spain total goals > 2\" = FALSE winner: TAKER (NO) OK paid. +0.1000 SOL Spain scored 2. The prop was false. The NO side was paid, on a Merkle proof, by a program with no admin key and nobody to appeal to. Bring your own key This is not a hosted service you have to trust. The program has no admin key and nobody to appeal to, including us. Everything the site does you can do from a terminal against the same program, with your own TxLINE subscription and your own wallet. Point RPC_URL at a cluster and the identical flow runs there: there is no special mainnet path, which is the only reason we were willing to put real money through it. your key \u00b7 your wallet \u00b7 your machine # 1. your TxLINE token. one on-chain subscribe, free tier, four weeks node subscribe.mjs # 2. your keys. the CLI reads these; the site never sees them WC_API_TOKEN=... # from /api/token/activate WC_JWT=... # from /auth/guest/start, no credentials needed # 3. your market, on whichever chain you like npm run market:fixtures RPC_URL=https://api.mainnet-beta.solana.com \\ ORACLE=9ExbZjAapQww1vfcisDmrngPinHTEfpjYRWMunJgcKaA \\ npm run market:open -- --fixture 18257739 --stat 1 --threshold 1 point an agent at it \u00b7 npm run market:watch # every command is non-interactive, prints an e",
+        "landmarks": [
+          "Overturn: an escrow that cannot pay out on a goal that didn't happen",
+          "A PROOF SHOWS THEY PUBLISHED IT, NOT THAT IT HAPPENED",
+          "THREE GUARDS, AND NONE OF THEM ARE CRYPTOGRAPHY",
+          "THE WHOLE PRODUCT IS SIX COMMANDS",
+          "BRING YOUR OWN KEY"
+        ],
+        "look": {
+          "found": true,
+          "quote": "On 14 July, for 26 seconds, the live feed said Spain had scored a third goal against France. VAR erased it. Any market that settled in those 26 seconds paid the wrong side, and the chain does not give money back. Overturn is a prop-bet escrow that refuses to settle on a result that is still provisional, still under review, or has since been withdrawn.",
+          "on_page": true,
+          "model_ms": 1233,
+          "usage": {
+            "prompt_tokens": 2152,
+            "completion_tokens": 98
+          }
+        },
+        "claim": {
+          "quote": "On 14 July, for 26 seconds, the live feed said Spain had scored a third goal against France. VAR erased it. Any market that settled in those 26 seconds paid the wrong side, and the chain does not give money back. Overturn is a prop-bet escrow that refuses to settle on a result that is still provisional, still under review, or has since been withdrawn.",
+          "confirmed": true,
+          "why": "About page explains why Overturn exists."
+        },
+        "claim_evidence": "Overturn is a prop-bet escrow that refuses to settle on a result that is still provisional, still under review, or has since been withdrawn.",
+        "claim_state": {
+          "state": "screen_confirmed",
+          "missing": [
+            "content_evidence"
+          ],
+          "reason": "The quoted answer is absent from page content; navigation alone is insufficient."
+        },
+        "trail": [
+          {
+            "url": "http://127.0.0.1:57449/",
+            "action": "look"
+          }
+        ],
+        "confirm_call": {
+          "model_ms": 2065,
+          "usage": {
+            "prompt_tokens": 2712,
+            "completion_tokens": 55
+          },
+          "model": "nvidia/Nemotron-3.5-Super-VL"
+        },
+        "model_ms": 714,
+        "usage": {
+          "prompt_tokens": 1527,
+          "completion_tokens": 46
+        },
+        "model_reply": "{\n  \"say\": \"I need to understand why Overturn exists\",\n  \"action\": \"click\",\n  \"target\": 2,\n  \"wish\": \"a clear reason why this escrow matters\"\n}",
+        "target_text": "ABOUT",
+        "target_locator": null,
+        "elapsed_ms": 5275
+      },
+      {
+        "order": 2,
+        "url": "http://127.0.0.1:57449/about.html",
+        "title": "About Overturn: why an escrow should refuse",
+        "http_status": 200,
+        "screenshot": "v-nemotron-nano-t1-02.png",
+        "page_text": "OVERTURN MARKET ABOUT STORY REPO ABOUT Everyone building on live sports data is one retraction away from paying the wrong person. Overturn is a prop-bet escrow on Solana that refuses to settle on a result that is still provisional, still under review, or has since been withdrawn. It exists because of 26 seconds on 14 July 2026, and because the fix for those 26 seconds is not more cryptography. WHAT HAPPENED France",
+        "choices_seen": 3,
+        "offsite_hidden": 2,
+        "needs_account": [],
+        "start_ms": 6413,
+        "status": "got_there",
+        "action": "done",
+        "say": "",
+        "page_evidence_text": "About Everyone building on live sports data is one retraction away from paying the wrong person. Overturn is a prop-bet escrow on Solana that refuses to settle on a result that is still provisional, still under review, or has since been withdrawn. It exists because of 26 seconds on 14 July 2026, and because the fix for those 26 seconds is not more cryptography. What happened France v Spain, World Cup semi-final. At 20:22:29 TxLINE's feed published Spain's third goal. It was flagged unconfirmed, which almost nobody reads. The scoreline moved to 0-3. VAR opened a review, closed it, and at 20:22:55 the goal was discarded. The score went back to 0-2 and stayed there to the final whistle at 21:04:14. The phantom goal existed, in public, in the data, for 26 seconds. 20:21:18Goal confirmed. Spain 2. This one was real. 20:22:29Goal published, unconfirmed. The feed now says 0-3. 20:22:41VAR review opened. The 0-3 is still standing. 20:22:53VAR review closed. 20:22:55Action discarded. The third goal never happened. Back to 0-2. 21:04:14Game finalised. Spain 2. It was always 2. A market that settled anywhere in that window paid the YES side on a goal that did not exist. It would have released the pot 41 minutes and 45 seconds before the match was over, and the chain does not have an undo button. There is no support desk. There is no chargeback. Why a proof does not save you TxLINE anchors every score to Solana as a Merkle proof. This is genuinely good, and it is the reason this project is possible at all: anyone can verify what the feed said and when, permissionlessly, without asking TxODDS for anything. But run the thought all the way through. A Merkle proof of the 0-3 scoreline is a perfectly valid proof. It verifies. The signature is real, the root is anchored, the maths is honest. What it proves is that TxODDS published 0-3. It does not prove Spain scored. A proof shows they published it, not that it happened. the entire thesis, in one line This is the part that surprised us, and it is why the project is not called Verify. Verifying the cryptography and settling on the result are two different jobs, and only one of them is hard. Every on-chain oracle we looked at can prove publication. TxLINE's schema is the only one we found that can also express this record was revised, because it carries an as-of time distinct from publication time and a supersession link between records. Without those two fields, a feed cannot tell you it was wrong. It can only tell you what it said. So the escrow refuses Settling is permissionless: anyone can call it, including a bot, including your opponent, including a stranger. That is safe precisely because the caller has no discretion. They hand over a proof; the guards and the oracle decide. Every input is checked against state frozen when the market opened, before anyone knew the answer. All three guards run before the oracle is ever asked. The escrow refuses to verify a proof it has no business verifying, which is a cheaper and more honest failure than verifying the wrong thing correctly. Guard 1, fixture binding. A real, valid, unforged proof from a different match is still a real proof. We tested this with the other semi-final's final proof: same stat key, same period, batch running past the whistle. It clears guards 2 and 3. It settles nothing here. Guard 2, finality. An honest half-time proof honestly proves the half-time score, and would settle a full-match market early and wrongly. Guard 3, predicate binding. Without it the settler picks the question, and picks the one they win. A Merkle proof is a path th",
+        "landmarks": [
+          "About Overturn: why an escrow should refuse",
+          "Everyone building on live sports data is one retraction away from paying the wrong person.",
+          "WHAT HAPPENED",
+          "WHY A PROOF DOES NOT SAVE YOU",
+          "SO THE ESCROW REFUSES",
+          "BRING YOUR OWN KEY",
+          "WHAT IT IS NOT"
+        ],
+        "look": {
+          "found": true,
+          "quote": "Overturn is a prop-bet escrow on Solana that refuses to settle on a result that is still provisional, still under review, or has since been withdrawn. It exists because of 26 seconds on 14 July 2026, and because the fix for those 26 seconds is not more cryptography.",
+          "on_page": true,
+          "model_ms": 1128,
+          "usage": {
+            "prompt_tokens": 2022,
+            "completion_tokens": 83
+          }
+        },
+        "claim": {
+          "quote": "Overturn is a prop-bet escrow on Solana that refuses to settle on a result that is still provisional, still under review, or has since been withdrawn. It exists because of 26 seconds on 14 July 2026, and because the fix for those 26 seconds is not more cryptography.",
+          "confirmed": true,
+          "why": "About page opened and explains why Overturn exists."
+        },
+        "claim_evidence": "Overturn is a prop-bet escrow on Solana that refuses to settle on a result that is still provisional, still under review, or has since been withdrawn. It exists because of 26 seconds on 14 July 2026, and because the fix for those 26 seconds is not more cryptography.",
+        "claim_state": {
+          "state": "job_completed",
+          "missing": []
+        },
+        "trail": [
+          {
+            "url": "http://127.0.0.1:57449/",
+            "action": "click",
+            "target": "ABOUT",
+            "status": "ok"
+          },
+          {
+            "url": "http://127.0.0.1:57449/about.html",
+            "action": "look"
+          }
+        ],
+        "confirm_call": {
+          "model_ms": 2508,
+          "usage": {
+            "prompt_tokens": 2649,
+            "completion_tokens": 95
+          },
+          "model": "nvidia/Nemotron-3.5-Super-VL"
+        },
+        "quote": "Overturn is a prop-bet escrow on Solana that refuses to settle on a result that is still provisional, still under review, or has since been withdrawn. It exists because of 26 seconds on 14 July 2026, and because the fix for those 26 seconds is not more cryptography.",
+        "screen": {
+          "url": "http://127.0.0.1:57449/about.html",
+          "title": "About Overturn: why an escrow should refuse"
+        },
+        "elapsed_ms": 3961
+      }
+    ],
+    "start_ms": 0,
+    "sceptic": false,
+    "blocked": [],
+    "claimed": true,
+    "screen_confirmed": true,
+    "confirmed": true,
+    "end_ms": 10374,
+    "time_to_goal_ms": 10374
+  },
+  "browser": {
+    "blocked": [],
+    "errors": [],
+    "read_posts": []
+  },
+  "limits": [
+    "One model visitor, not a person.",
+    "A separate judge model, nvidia/Nemotron-3.5-Super-VL, checked the completion claim.",
+    "Listed-rate estimate, not a provider invoice."
+  ]
+}
