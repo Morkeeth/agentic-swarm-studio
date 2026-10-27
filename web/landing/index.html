@@ -48,6 +48,12 @@ opened a page that answered 404</pre><p>Run on the original commit bd6a868.</p><
   </ol>
   <p class="repair-proof">Model: <code>nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B</code> through Nebius Token Factory. 13 calls, every reply with usage and that model id: 16,317 prompt and 617 completion tokens, 0.00113 USD at listed rates, not an invoice. This page replays that run. It makes no model call and repairs nothing.</p>
   <nav class="board-product" aria-label="Repair case"><a href="/repair/overturn/">Open the full repair report ↗</a><a href="/repair/overturn/receipt.json">Receipt with commits and hashes</a><a href="https://github.com/Morkeeth/overturn">Overturn source</a></nav>
+  <aside class="judged-proof" aria-labelledby="judged-proof-title">
+    <h3 id="judged-proof-title">Same repair, checked by a separate NVIDIA judge</h3>
+    <p>In a new recorded pair on 27 October, the original returned 404; the same patch passed the check, and a fresh visitor reached About. A separate Nemotron Super VL judge agreed with the completion claim and pointed to words on that screen.</p>
+    <p>One case, run from the command line on a plain static host—not a success rate or a fresh run by this hosted page. The deployed original already works through Vercel rewrites.</p>
+    <nav class="board-product" aria-label="Judged repair evidence"><a href="/repair/overturn-judged/">Inspect the judged before/after ↗</a><a href="/repair/overturn-judged/receipt.json">Models, usage and exact commits</a></nav>
+  </aside>
   <details class="batch-setup"><summary>Check it, or run it on your own app</summary>
     <p>From this project's source, with Python, git and Playwright Chromium. No key: rebuild both commits from GitHub and rerun the test, red then green.</p>
     <p><code>python -m sim.repair_loop recheck examples/overturn</code></p>

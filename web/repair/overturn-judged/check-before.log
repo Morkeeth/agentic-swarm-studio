@@ -1,0 +1,32 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________________ test_visitor_path_why_this_exists _______________________
+
+    def test_visitor_path_why_this_exists():
+        with sync_playwright() as pw:
+            browser = pw.chromium.launch(headless=True)
+            page = browser.new_page(viewport={"width": 1440, "height": 900})
+            status = {}
+            page.on("response", lambda r: status.__setitem__("last", r.status) if r.request.is_navigation_request() and r.frame == page.main_frame else None)
+            first = page.goto(START, wait_until="domcontentloaded")
+            assert first is not None and first.status < 400, f"start page answered {first.status if first else None}"
+            for index, label in enumerate(PATH):
+                status.pop("last", None)
+                # Whole label, any case: the visitor read rendered text, which CSS text-transform can change from the accessible name.
+                name = re.compile("^" + re.escape(label) + "$", re.I)
+                target = page.get_by_role("link", name=name).or_(page.get_by_role("button", name=name)).or_(page.get_by_role("tab", name=name)).or_(page.locator("summary").filter(has_text=name))
+                if SELECTORS[index]:
+                    target = page.locator(SELECTORS[index]).and_(page.locator("a[href],button,[role=button],[role=link],[role=tab],summary")).filter(has_text=name)
+                expect(target).to_have_count(1, timeout=8000)
+                assert target.count() == 1, f"recorded control missing or ambiguous: {label!r}"
+                target.click()
+                page.wait_for_load_state("domcontentloaded")
+                code = status.get("last", 200)
+>               assert code < 400, f"clicking {label!r} opened a page that answered {code}"
+E               AssertionError: clicking 'WHY THIS EXISTS' opened a page that answered 404
+E               assert 404 < 400
+
+test_returned_path.py:38: AssertionError
+=========================== short test summary info ============================
+FAILED test_returned_path.py::test_visitor_path_why_this_exists - AssertionEr...
+1 failed in 1.07s
