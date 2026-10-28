@@ -12,7 +12,7 @@ Customer: a developer about to ship a change to a web app they own. They name on
   --output ../repair-overturn
 ```
 
-`--visitor nemotron` uses NVIDIA Nemotron Nano through Nebius Token Factory and needs `TOKEN_FACTORY_API_KEY` plus `CONFIRM_SPONSOR_SPEND=RUN`. Each of the two visits is reserved against the local spend record and stops at `--run-cap-usd` (default 0.05). `--visitor codex` uses a signed-in Codex CLI instead and is labelled as not sponsor evidence. With `--visitor nemotron`, `--judge-after` adds a separate `nvidia/Nemotron-3.5-Super-VL` judge that checks the completion claim on the repaired visit only; it is an extra paid call per claim. The recorded Overturn pair predates this option and has no separate judge.
+`--visitor nemotron` uses NVIDIA Nemotron Nano through Nebius Token Factory and needs `TOKEN_FACTORY_API_KEY` plus `CONFIRM_SPONSOR_SPEND=RUN`. Each of the two visits is reserved against the local spend record and stops at `--run-cap-usd` (default 0.05). `--visitor codex` uses a signed-in Codex CLI instead and is labelled as not sponsor evidence. With `--visitor nemotron`, `--judge-after` adds a separate `nvidia/Nemotron-3.5-Super-VL` judge that checks the completion claim on the repaired visit only; it is an extra paid call per claim. The original 26 October Overturn pair predates this option and has no separate judge. The bundled [27 October pair](../examples/overturn-judged/REPAIR.html) uses it; its receipt identifies the separate judge and the quoted final-screen evidence.
 
 The output folder holds:
 
