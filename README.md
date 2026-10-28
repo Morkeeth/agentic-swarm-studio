@@ -2,16 +2,19 @@
 
 Give a web app one goal. NVIDIA Nemotron visitors try it in a browser, retain the screens and actions, and return a navigation check for a confirmed error path. After a developer supplies a patch, the repair loop runs the same check and sends a fresh visitor at the same goal. Visitors are models, not people. They only read and click; they do not sign in, type, buy, upload or save.
 
-**[Open the hosted product](https://agentic-swarm-studio-568004190078.us-central1.run.app/)** · **[Inspect the repair report](https://agentic-swarm-studio-568004190078.us-central1.run.app/repair/overturn/)** · [Setup and commands](RUN.md) · [Evidence and provenance](docs/evidence.md)
+**[Open the hosted product](https://agentic-swarm-studio-568004190078.us-central1.run.app/)** · **[Inspect the separate-judge repair](https://agentic-swarm-studio-568004190078.us-central1.run.app/repair/overturn-judged/)** · [Original repair](https://agentic-swarm-studio-568004190078.us-central1.run.app/repair/overturn/) · [Setup and commands](RUN.md) · [Evidence and provenance](docs/evidence.md)
 
-## Try the demo
+## Judge path: inspect first, reproduce second
 
 No account or key is needed for recorded playback.
 
 1. Start with **A visitor hit a 404. The fix was proven with the same goal.** on the hosted landing page.
 2. Follow the five steps: the failed visit, returned test, patch, passing check and completed second visit.
 3. Use **Replay every screen** to inspect the [before visit](https://agentic-swarm-studio-568004190078.us-central1.run.app/studio#replays/overturn-nemotron-404) and [after visit](https://agentic-swarm-studio-568004190078.us-central1.run.app/studio#replays/overturn-nemotron-fixed).
-4. Open the full repair report and download the exact test, patch and receipt. Reproduce its red/green check locally with the commands below.
+4. Open **Same repair, checked by a separate NVIDIA judge**, or follow the separate-judge link above. Its 27 October pair includes a Nemotron Super VL completion check. Inspect the cited final-screen words, exact models and usage in its receipt.
+5. Download the test, patch and receipt from either report. Follow the no-key setup below and rerun that report's navigation check. The expected result is `{"before": 1, "after": 0}`. This recreates red/green checks, not the saved model visits.
+
+These are two recorded pairs for the same host-specific repair, not two distinct app repairs or a success-rate study. The original 26 October pair used Nano for its screen check (USD 0.00113 listed rate); the 27 October pair used a separate Super VL judge (USD 0.00268 listed rate). Those are estimates for their respective 13-call pairs, not invoices. A developer supplied the patch; the product did not autonomously write it.
 
 This is one recorded repair on Overturn, an app by the same author. Serving the original as plain static files exposes an About link that returns 404. Vercel rewrites make the deployed original pass. The five-file link patch makes the static copy pass too; a second recorded visitor reaches the same goal. This establishes a host-specific reproduction and retest, not a general success rate.
 
@@ -38,6 +41,8 @@ After installing the dependencies and Chromium above, run from the repository ro
 
 ```sh
 .venv-app/bin/python -m sim.repair_loop recheck examples/overturn
+# Or reproduce the navigation check from the separate-judge pair:
+.venv-app/bin/python -m sim.repair_loop recheck examples/overturn-judged
 ```
 
 This fetches the original Overturn commit from GitHub, rebuilds the exact fixed commit from the bundled patch, serves both locally and reruns the same Playwright check. It makes no model call and needs no provider key. Expected output includes `"before": 1` and `"after": 0`. Here, 1 is the original check's expected failure; 0 is the patched check's pass. The command compares both codes with the retained receipt and exits non-zero, printing `recheck failed`, if either differs or the receipt does not record red before and green after. It writes `recheck-before.log` and `recheck-after.log` beside that receipt.
@@ -48,14 +53,14 @@ The second visitor's goal completion is retained evidence, not rerun by `recheck
 
 The public replay bundle contains **8 distinct real apps**, **12 saved real-app runs** and **32 visitor trajectories**. Seven apps are external projects; Overturn is author-owned. Three additional controlled demo/sample runs bring the studio total to 15 replays and 45 trajectories. Multiple visitors or before/after copies do not count as additional apps.
 
-All bundled visitor records declare Nemotron Nano. The broader studio uses Super VL for visual checking; the two Overturn repair records use Nano for the visitor and final screen check. The Overturn receipt establishes 13 Token Factory replies carrying the requested model ID and usage: 16,317 prompt and 617 completion tokens, about $0.00113 at listed rates, not an invoice.
+All bundled visitor records declare Nemotron Nano. The broader studio uses Super VL for visual checking. The original 26 October Overturn pair used Nano for both its visitor and final screen check; its receipt records 13 Token Factory replies carrying the requested model ID and usage: 16,317 prompt and 617 completion tokens, about $0.00113 at listed rates, not an invoice. The separate 27 October pair linked above used Super VL for the final screen check and has its own receipt.
 
 The wider historical 122-app / 113-hackathon survey is mentioned in older reports and product research copy. Its original classified population is not bundled here, so these instructions do not present that number as independently reproducible from this checkout. The [evidence guide](docs/evidence.md) names the exact retained runs and distinguishes the owned repair from historical before/after examples. The studio's ten historical command-line cases are another evidence type, not ten additional browser-tested apps.
 
 ## NVIDIA Nemotron and Nebius Token Factory
 
 - **Visitor:** `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B` chooses read-only browser actions through Nebius Token Factory's OpenAI-compatible endpoint.
-- **Visual judge:** `nvidia/Nemotron-3.5-Super-VL` checks claimed completion in broader studio runs. A model claim, screen agreement and actual goal completion are kept separate. The Overturn pair used Nano for its screen check instead.
+- **Visual judge:** `nvidia/Nemotron-3.5-Super-VL` checks claimed completion in broader studio runs. A model claim, screen agreement and actual goal completion are kept separate. The original 26 October Overturn pair used Nano for its screen check; the 27 October [separate-judge pair](examples/overturn-judged/REPAIR.html) used Super VL.
 - **Live explanation:** one Nano call explains a saved record when the service enables it. The UI displays its model, token count, latency and listed-rate estimate.
 - **New runs:** need the user's own Token Factory key and explicit paid-call enablement. Nothing in the replay or recheck setup above enables them. See [RUN.md](RUN.md).
 
