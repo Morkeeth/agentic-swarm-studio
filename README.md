@@ -1,8 +1,42 @@
 # Agentic Swarm Simulator
 
+## TLDR
+
+Send model-driven visitors through a web task and retain their screens and navigation checks.<br>
+For developers reproducing an error path and reviewing whether a supplied repair holds.<br>
+Recorded playback needs no key; fresh model visits require separate setup and external inference.
+
+[Open the hosted product](https://agentic-swarm-studio-568004190078.us-central1.run.app/) · [Inspect the separate-judge repair](https://agentic-swarm-studio-568004190078.us-central1.run.app/repair/overturn-judged/) · [Original repair](https://agentic-swarm-studio-568004190078.us-central1.run.app/repair/overturn/)
+
+## The problem and approach
+
+The problem: a broken link or a 404 on a real path goes unnoticed until a person hits it, and a bug report rarely comes with a test you can rerun.
+
+Visitors are NVIDIA Nemotron models, not people; they only read and click, and never sign in, type, buy, upload or save. After you supply a patch, the repair loop reruns the same check and sends a fresh visitor at the same goal.
+
+Open the hosted product, no account or key needed for recorded playback: https://agentic-swarm-studio-568004190078.us-central1.run.app/
+
+## Review and pick up the work
+
+[RUN.md](RUN.md) · [docs/evidence.md](docs/evidence.md) · [Agent guide](AGENTS.md)
+
+Start with the linked source, setup and evidence. Recorded demos and sample data keep their original scope; use the repository instructions for a fresh run.
+
+## Recorded views
+
+These are retained repository captures, not a new live verification. Unless a date is given in the caption, the capture date is not documented. The interface may have changed since capture.
+
+![Retained screen from the separate-judge visit before the repair](examples/overturn-judged/visit-before/v-nemotron-nano-t1-01.png)
+
+*Retained screen from the separate-judge visit before the repair.*
+
+![Retained screen from the visit after the supplied repair](examples/overturn-judged/visit-after/v-nemotron-nano-t1-01.png)
+
+*Retained screen from the visit after the supplied repair.*
+
 Give a web app one goal. NVIDIA Nemotron visitors try it in a browser, retain the screens and actions, and return a navigation check for a confirmed error path. After a developer supplies a patch, the repair loop runs the same check and sends a fresh visitor at the same goal. Visitors are models, not people. They only read and click; they do not sign in, type, buy, upload or save.
 
-**[Open the hosted product](https://agentic-swarm-studio-568004190078.us-central1.run.app/)** · **[Inspect the separate-judge repair](https://agentic-swarm-studio-568004190078.us-central1.run.app/repair/overturn-judged/)** · [Original repair](https://agentic-swarm-studio-568004190078.us-central1.run.app/repair/overturn/) · [Setup and commands](RUN.md) · [Evidence and provenance](docs/evidence.md)
+**[Open the hosted product](https://agentic-swarm-studio-568004190078.us-central1.run.app/)** · **[Separate-judge repair (host returned HTTP 500 on 29 October 2026)](https://agentic-swarm-studio-568004190078.us-central1.run.app/repair/overturn-judged/)** · [Original repair](https://agentic-swarm-studio-568004190078.us-central1.run.app/repair/overturn/) · [Setup and commands](RUN.md) · [Evidence and provenance](docs/evidence.md)
 
 ## Judge path: inspect first, reproduce second
 
@@ -102,3 +136,7 @@ Retained external-app screens are credited below. Licence entries are the record
 | StreetEats | https://github.com/janellewong/StreetEats | MIT | `streeteats-sign-in` |
 | Water Buddy | https://github.com/huangc01cph-ops/water-buddy | none published | `waterbuddy-v3-404`, `waterbuddy-v3-fixed` |
 | Overturn | https://github.com/Morkeeth/overturn | Author-owned project; see its own notices | `overturn-nemotron-404`, `overturn-nemotron-fixed` |
+
+## License and data boundaries
+
+Code terms: [LICENSE](LICENSE). Data, provider responses, media, fonts and other third-party assets may have separate terms. Repository access alone does not grant rights to those materials. 
