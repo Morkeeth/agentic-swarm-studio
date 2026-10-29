@@ -1,6 +1,14 @@
 # Agentic Swarm Simulator
 
-Give a web app one goal. NVIDIA Nemotron visitors try it in a browser, retain the screens and actions, and return a navigation check for a confirmed error path. After a developer supplies a patch, the repair loop runs the same check and sends a fresh visitor at the same goal. Visitors are models, not people. They only read and click; they do not sign in, type, buy, upload or save.
+**Agentic Swarm Simulator sends model-driven visitors at your web app with one goal, records what they saw and clicked, and hands you a reproducible navigation check when one of them hits an error.**
+
+The problem: a broken link or a 404 on a real path goes unnoticed until a person hits it, and a bug report rarely comes with a test you can rerun.
+
+For developers of static sites and web apps who want a failing check they can reproduce, not a screenshot.
+
+Visitors are NVIDIA Nemotron models, not people; they only read and click, and never sign in, type, buy, upload or save. After you supply a patch, the repair loop reruns the same check and sends a fresh visitor at the same goal.
+
+Open the hosted product, no account or key needed for recorded playback: https://agentic-swarm-studio-568004190078.us-central1.run.app/
 
 **[Open the hosted product](https://agentic-swarm-studio-568004190078.us-central1.run.app/)** · **[Inspect the separate-judge repair](https://agentic-swarm-studio-568004190078.us-central1.run.app/repair/overturn-judged/)** · [Original repair](https://agentic-swarm-studio-568004190078.us-central1.run.app/repair/overturn/) · [Setup and commands](RUN.md) · [Evidence and provenance](docs/evidence.md)
 
